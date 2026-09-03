@@ -132,8 +132,11 @@ export default async function decorate(block) {
   const menuList = menuSection ? menuSection.querySelector('ul') : null;
   const topItems = menuList ? [...menuList.querySelectorAll(':scope > li')] : [];
   topItems.forEach((li) => {
-    const heading = li.querySelector(':scope > a');
+    // The heading link may be a direct child or wrapped in a <p> after the
+    // fragment round-trips through Document Authoring. Take the first <a> that
+    // is NOT inside the nested <ul>.
     const sublist = li.querySelector(':scope > ul');
+    const heading = [...li.querySelectorAll('a')].find((a) => !sublist || !sublist.contains(a));
     if (heading && sublist) {
       const col = document.createElement('div');
       col.className = 'nav-megamenu-col';
@@ -157,13 +160,14 @@ export default async function decorate(block) {
   });
   menuPanel.append(menuInner);
 
-  // Standalone links (e.g. FAQ and Help) render below the columns.
-  const standalone = topItems.filter((li) => !li.querySelector(':scope > ul') && li.querySelector(':scope > a'));
+  // Standalone links (e.g. FAQ and Help) render below the columns — a top item
+  // with no nested <ul>. The link may be wrapped in a <p>.
+  const standalone = topItems.filter((li) => !li.querySelector(':scope > ul') && li.querySelector('a'));
   if (standalone.length) {
     const foot = document.createElement('div');
     foot.className = 'nav-megamenu-foot';
     standalone.forEach((li) => {
-      const a = li.querySelector(':scope > a');
+      const a = li.querySelector('a');
       const link = document.createElement('a');
       link.href = a.getAttribute('href');
       link.textContent = a.textContent;
