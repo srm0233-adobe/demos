@@ -199,6 +199,19 @@ export default async function decorate(block) {
 
   const navSections = nav.querySelector('.nav-sections');
   if (navSections) {
+    // Nav links must render as plain text, not EDS buttons. When the fragment
+    // round-trips through Document Authoring, standalone links get wrapped in a
+    // <p> and picked up by button decoration (.button / .button-container).
+    // Strip that here and unwrap the paragraph so the label sits directly in
+    // the <li>.
+    navSections.querySelectorAll('a.button').forEach((link) => {
+      link.classList.remove('button');
+      const wrapper = link.closest('.button-container');
+      if (wrapper) {
+        wrapper.replaceWith(link);
+      }
+    });
+
     navSections.querySelectorAll(':scope .default-content-wrapper > ul > li').forEach((navSection) => {
       if (navSection.querySelector('ul')) navSection.classList.add('nav-drop');
       navSection.addEventListener('click', () => {
