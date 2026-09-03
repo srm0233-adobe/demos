@@ -1,0 +1,13 @@
+{
+  "status": "success",
+  "url": "http://localhost:8899/home.html",
+  "path": "att-brand-center/home",
+  "timestamp": "2026-09-03T22:04:06.614Z",
+  "title": "AT&T Brand Center",
+  "template": "home",
+  "blocks": [
+    "hero-banner",
+    "cards-popular",
+    "carousel-photo"
+  ]
+}

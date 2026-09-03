@@ -1,0 +1,40 @@
+{
+  "variantName": "cards-popular",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-03T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "http://localhost:8899/home.html",
+    "originPage": "AT&T Brand Center home page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "popular-items",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "per card: linked image + title link + description",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "hasDescription": true
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "image-led item grids on light backgrounds",
+      "cards with image + linked title + short description",
+      "'popular items' / featured resource grids"
+    ],
+    "notSuitableFor": [
+      "compact icon-only callout strips",
+      "dark-background feature highlights",
+      "promo cards with CTA buttons"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/home"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-03T00:00:00.000Z"
+  }
+}

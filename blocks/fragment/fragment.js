@@ -24,9 +24,12 @@ export async function loadFragment(path) {
       const main = document.createElement('main');
       main.innerHTML = await resp.text();
 
-      // reset base path for media to fragment base
+      // reset base path for media to fragment base. Covers hashed EDS media
+      // (./media_*) and plain relative asset paths (e.g. images/logo.png) so a
+      // portable fragment's images resolve against the fragment location, not
+      // the host page URL.
       const resetAttributeBase = (tag, attr) => {
-        main.querySelectorAll(`${tag}[${attr}^="./media_"]`).forEach((elem) => {
+        main.querySelectorAll(`${tag}[${attr}^="./media_"], ${tag}[${attr}^="media_"], ${tag}[${attr}^="images/"], ${tag}[${attr}^="./images/"]`).forEach((elem) => {
           elem[attr] = new URL(elem.getAttribute(attr), new URL(path, window.location)).href;
         });
       };

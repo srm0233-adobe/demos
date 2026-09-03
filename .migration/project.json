@@ -1,0 +1,11 @@
+{
+  "type": "da",
+  "sites": {
+    "demos": {
+      "previewOrg": "srm0233-adobe",
+      "previewSite": "demos",
+      "contentHostUrl": "https://content.da.live/srm0233-adobe/demos/",
+      "libraryUrl": "https://main--demos--srm0233-adobe.aem.live/att-brand-center/docs/library/blocks.json"
+    }
+  }
+}

@@ -1,20 +1,54 @@
 footer {
   background-color: var(--light-color);
   font-size: var(--body-font-size-xs);
+  color: var(--text-color);
 }
 
 footer .footer > div {
   margin: auto;
   max-width: 1200px;
-  padding: 40px 24px 24px;
+  padding: 24px;
+  text-align: center;
+}
+
+footer .footer > div:first-child {
+  padding-top: 40px;
+}
+
+footer .footer > div:last-child {
+  padding-bottom: 40px;
 }
 
 footer .footer p {
   margin: 0;
+  line-height: 1.6;
+}
+
+/* Privacy / Terms links row */
+footer .footer a:any-link {
+  color: var(--att-blue-dark);
+  text-decoration: none;
+}
+
+footer .footer a:hover {
+  text-decoration: underline;
+}
+
+/* copyright disclaimer — muted, smaller */
+footer .footer > div:last-child p {
+  color: #6c6c6c;
+  font-size: 12px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+footer .footer > div:last-child a:any-link {
+  color: #6c6c6c;
+  text-decoration: underline;
 }
 
 @media (width >= 900px) {
   footer .footer > div {
-    padding: 40px 32px 24px;
+    padding: 24px 32px;
   }
 }

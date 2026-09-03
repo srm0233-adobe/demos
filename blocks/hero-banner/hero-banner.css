@@ -1,4 +1,5 @@
-/* hero-banner — full-bleed photographic banner with knockout text + yellow CTA */
+/* hero-banner — hero carousel: full-bleed background photo with a dark overlay
+   copy box on the left. Slides stack; only the active one is visible. */
 .hero-banner-container .hero-banner-wrapper {
   max-width: unset;
   padding: 0;
@@ -6,74 +7,213 @@
 
 .hero-banner {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  height: 536px;
-  padding: 48px 24px;
+  min-height: 530px;
   overflow: hidden;
-  color: var(--background-color);
+}
+
+.hero-banner-track {
+  position: relative;
+  min-height: 530px;
+}
+
+/* each slide overlaps; fade between them */
+.hero-banner-slide {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.5s ease;
+}
+
+.hero-banner-slide.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 /* background photo */
-.hero-banner picture {
+.hero-banner-media {
   position: absolute;
   inset: 0;
-  z-index: -2;
+  z-index: 0;
+  margin: 0;
 }
 
-.hero-banner picture img {
+.hero-banner-media picture,
+.hero-banner-media img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* dark scrim so knockout text stays legible */
-.hero-banner::after {
-  content: "";
+/* copy container — dark box positioned to the left, inset from the slide edges.
+   Mobile uses smaller insets; desktop applies the exact 130 / 70 / 87 offsets. */
+.hero-banner-copy {
   position: absolute;
-  inset: 0;
-  z-index: -1;
-  background: linear-gradient(90deg, rgb(0 0 0 / 70%) 0%, rgb(0 0 0 / 35%) 55%, rgb(0 0 0 / 10%) 100%);
+  z-index: 1;
+  box-sizing: border-box;
+  left: 24px;
+  top: 24px;
+  bottom: 24px;
+  margin: 0;
+  padding: 0;
+  width: auto;
+  max-width: none;
 }
 
-.hero-banner > div {
-  max-width: 1200px;
-  width: 100%;
-  margin: 0 auto;
+/* the dark overlay box wraps the copy contents in one continuous panel */
+.hero-banner-panel {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  width: 415px;
+  max-width: 100%;
+  color: #fff;
+  background-color: rgb(0 0 0 / 85%);
+  padding: 36px 32px;
 }
 
-.hero-banner h1,
-.hero-banner h2 {
-  margin: 0 0 0.25em;
-  max-width: 640px;
-  color: var(--background-color);
+.hero-banner-panel p {
+  margin: 0 0 24px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* eyebrow (first paragraph) */
+.hero-banner-panel > p:first-child {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.hero-banner-panel h1,
+.hero-banner-panel h2 {
+  margin: 0 0 16px;
   font-family: var(--heading-font-family);
-  font-weight: var(--font-weight-bold);
-  font-size: var(--heading-font-size-xxl);
+  font-weight: 300;
+  font-size: 40px;
   line-height: 1.1;
 }
 
-.hero-banner p {
-  max-width: 520px;
-  margin: 0 0 1.5em;
-  font-size: 1.25rem;
-  line-height: 1.4;
+.hero-banner-panel p.button-container {
+  margin: 0;
 }
 
-.hero-banner a.button:any-link,
-.hero-banner p strong {
-  display: inline-block;
-  background-color: var(--brand-yellow);
-  color: var(--text-strong-color);
-  font-weight: var(--font-weight-semibold);
-  padding: 0.625em 1.5em;
-  border-radius: var(--border-radius);
+.hero-banner-copy a.button:any-link {
+  margin: 0;
+  background-color: var(--att-blue-dark);
+  border-color: var(--att-blue-dark);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 0.6em 1.4em;
+}
+
+.hero-banner-copy a.button:hover,
+.hero-banner-copy a.button:focus {
+  background-color: var(--att-blue-darker);
+  border-color: var(--att-blue-darker);
+}
+
+/* prev / next arrows */
+.hero-banner-nav {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 16px;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.hero-banner-arrow {
+  position: relative;
+  width: 40px;
+  height: 40px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(0 0 0 / 40%);
+  pointer-events: auto;
+  cursor: pointer;
+}
+
+.hero-banner-arrow:hover,
+.hero-banner-arrow:focus {
+  background-color: rgb(0 0 0 / 65%);
+}
+
+.hero-banner-arrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-bottom: 0;
+  border-left: 0;
+}
+
+.hero-banner-prev::after {
+  transform: translate(-35%, -50%) rotate(-135deg);
+}
+
+.hero-banner-next::after {
+  transform: translate(-65%, -50%) rotate(45deg);
+}
+
+/* dot indicators */
+.hero-banner-dots {
+  position: absolute;
+  bottom: 16px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  z-index: 2;
+}
+
+.hero-banner-dot {
+  width: 10px;
+  height: 10px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background-color: rgb(255 255 255 / 50%);
+  cursor: pointer;
+}
+
+.hero-banner-dot.active {
+  background-color: #fff;
 }
 
 @media (width >= 900px) {
-  .hero-banner {
-    height: 536px;
-    padding: 64px 32px;
+  .hero-banner,
+  .hero-banner-track {
+    min-height: 530px;
+  }
+
+  /* exact offsets: 130px from left, 70px from top, 87px from bottom.
+     At 530px tall this yields a 373px-high text container (415 x 373). */
+  .hero-banner-copy {
+    left: 130px;
+    top: 70px;
+    bottom: 87px;
+    padding: 0;
+  }
+
+  .hero-banner-panel h1,
+  .hero-banner-panel h2 {
+    font-size: 44px;
   }
 }

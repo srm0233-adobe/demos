@@ -1,0 +1,79 @@
+/* cards-popular — "I want to see popular items" 3-up card row */
+
+/* light-grey band behind the heading + cards */
+main > .section:has(.cards-popular) {
+  background-color: var(--light-color);
+  margin: 0;
+  padding: 40px 0 52px;
+}
+
+main > .section:has(.cards-popular) > div > h2 {
+  text-align: center;
+  font-weight: 300;
+  margin-bottom: 0.9em;
+}
+
+.cards-popular {
+  max-width: 940px;
+  margin: 0 auto;
+}
+
+.cards-popular > ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 24px;
+}
+
+.cards-popular > ul > li {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--background-color);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 12%);
+}
+
+/* image sits in a solid AT&T-blue tile */
+.cards-popular .cards-popular-card-image {
+  line-height: 0;
+  background-color: var(--att-blue);
+  aspect-ratio: 16 / 9;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.cards-popular .cards-popular-card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.cards-popular .cards-popular-card-body {
+  padding: 16px 18px 22px;
+}
+
+.cards-popular .cards-popular-card-body h3 {
+  margin: 0 0 8px;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 1.2;
+}
+
+.cards-popular .cards-popular-card-body h3 a:any-link {
+  color: var(--att-blue-dark);
+  text-decoration: none;
+}
+
+.cards-popular .cards-popular-card-body h3 a:hover {
+  text-decoration: underline;
+}
+
+.cards-popular .cards-popular-card-body p {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
