@@ -1,0 +1,39 @@
+/*
+ * AT&T Brand Center — brand tokens
+ * Derived from provided home-page screenshots + AT&T brand system
+ * (live site is authenticated/unreachable, so values were read from the
+ * screenshots rather than extracted from the DOM).
+ */
+
+:root {
+  /* AT&T brand colors */
+  --att-blue: #009fdb;            /* primary AT&T blue (icons, tiles, photo band) */
+  --att-blue-dark: #0568ae;       /* link / hover blue */
+  --att-blue-darker: #044f87;
+
+  /* global color system */
+  --background-color: #fff;
+  --light-color: #f2f2f2;         /* popular-items light-grey band */
+  --dark-color: #000;          /* hero overlay copy box */
+  --text-color: #191919;
+  --link-color: #0568ae;
+  --link-hover-color: #044f87;
+
+  /* typography — thin AT&T look via Helvetica Neue / Arial */
+  --heading-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+  --body-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+  --heading-font-weight: 300;
+
+  /* spacing */
+  --section-padding: 48px;
+  --content-max-width: 1200px;
+  --nav-height: 72px;
+
+  /* heading sizes (desktop) */
+  --heading-font-size-xxl: 48px;
+  --heading-font-size-xl: 40px;
+  --heading-font-size-l: 34px;
+  --heading-font-size-m: 28px;
+  --heading-font-size-s: 22px;
+  --heading-font-size-xs: 18px;
+}

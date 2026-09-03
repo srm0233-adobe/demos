@@ -1,0 +1,89 @@
+{
+  "metadata": {
+    "projectType": "da"
+  },
+  "templates": [
+    {
+      "name": "home",
+      "urls": [
+        "http://localhost:8899/home.html"
+      ],
+      "representativeUrl": "http://localhost:8899/home.html",
+      "description": "AT&T Brand Center home page: hero, popular-items cards, custom photography carousel, FAQ bar.",
+      "urlPattern": "/*",
+      "blocks": [
+        {
+          "name": "hero-banner",
+          "instances": [
+            "body > section.hero-section"
+          ]
+        },
+        {
+          "name": "cards-popular",
+          "instances": [
+            "body > section.popular-section.section > div.container > div.popular-cards"
+          ]
+        },
+        {
+          "name": "section-photography",
+          "instances": [
+            "body > section.photography-section.att-blue.section"
+          ],
+          "section": "att-blue"
+        },
+        {
+          "name": "carousel-photo",
+          "instances": [
+            "body > section.photography-section.att-blue.section .photo-cards"
+          ]
+        }
+      ],
+      "sections": [
+        {
+          "id": "rc1",
+          "name": "Hero",
+          "selector": "body > section.hero-section",
+          "style": null,
+          "blocks": [
+            "hero-banner"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc2",
+          "name": "Popular items",
+          "selector": "body > section.popular-section.section",
+          "style": null,
+          "blocks": [
+            "cards-popular"
+          ],
+          "defaultContent": [
+            "body > section.popular-section.section > div.container > div:nth-of-type(1)"
+          ]
+        },
+        {
+          "id": "rc3",
+          "name": "Custom Photography Collections",
+          "selector": "body > section.photography-section.att-blue.section",
+          "style": "att-blue",
+          "blocks": [
+            "carousel-photo"
+          ],
+          "defaultContent": [
+            "body > section.photography-section.att-blue.section > div.container > h2"
+          ]
+        },
+        {
+          "id": "rc4",
+          "name": "FAQ bar",
+          "selector": "body > section.faq-section.section",
+          "style": null,
+          "blocks": [],
+          "defaultContent": [
+            "body > section.faq-section.section > div.container > h4"
+          ]
+        }
+      ]
+    }
+  ]
+}

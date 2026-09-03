@@ -1,0 +1,40 @@
+{
+  "variantName": "carousel-photo",
+  "baseBlock": "carousel",
+  "version": "1.0.0",
+  "created": "2026-09-03T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "http://localhost:8899/home.html",
+    "originPage": "AT&T Brand Center home page",
+    "blockPosition": "middle"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "colored",
+    "density": "spacious",
+    "purpose": "photo-gallery",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "per slide: portrait image + title",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "horizontally sliding image galleries",
+      "photography / collection showcases with a title per slide",
+      "rotating full-bleed image displays on colored section backgrounds"
+    ],
+    "notSuitableFor": [
+      "static card grids that do not rotate",
+      "text-heavy slides with multiple CTAs",
+      "single non-interactive hero images"
+    ]
+  },
+  "usage": {
+    "pagesUsing": ["/home"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-03T00:00:00.000Z"
+  }
+}
