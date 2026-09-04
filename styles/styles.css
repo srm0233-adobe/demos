@@ -386,6 +386,7 @@ main .section.guidelines-body .columns > div > div:last-child h2 {
 
 /* content-column tile grids: any <ul> in the content column renders as an
    image-tile grid with a clickable title below each image (1/2/3-up). */
+/* stylelint-disable-next-line no-descending-specificity */
 main .section.guidelines-body .columns > div > div:last-child ul {
   list-style: none;
   margin: 24px 0 40px;
@@ -395,6 +396,7 @@ main .section.guidelines-body .columns > div > div:last-child ul {
   gap: 24px 32px;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 main .section.guidelines-body .columns > div > div:last-child ul > li {
   display: flex;
   flex-direction: column;
