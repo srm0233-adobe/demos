@@ -1,0 +1,50 @@
+/* sidenav — sticky, left-aligned folder-driven side menu */
+.sidenav {
+  margin: 0;
+}
+
+.sidenav .sidenav-heading {
+  margin: 0 0 20px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6c6c6c;
+}
+
+.sidenav .sidenav-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidenav .sidenav-list > li {
+  margin-bottom: 14px;
+}
+
+.sidenav .sidenav-list a:any-link {
+  color: var(--att-blue-dark);
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.sidenav .sidenav-list a:hover {
+  text-decoration: underline;
+}
+
+/* active page — bold, dark text (matches the source's current-section state) */
+.sidenav .sidenav-list li.sidenav-active > a:any-link {
+  color: var(--text-color);
+  font-weight: 700;
+}
+
+@media (width >= 900px) {
+  /* stick to the left as the page scrolls, offset below the fixed header */
+  .sidenav {
+    position: sticky;
+    top: calc(var(--nav-height) + 24px);
+    align-self: start;
+    max-height: calc(100vh - var(--nav-height) - 48px);
+    overflow-y: auto;
+  }
+}

@@ -303,99 +303,57 @@ main .section.guidelines-hero a:hover {
   text-decoration: underline;
 }
 
-/* body: side menu (left) + content (right) via the columns block */
-main .section.guidelines-body .columns > div {
-  align-items: start;
-  gap: 64px;
+/* body: folder-driven sidenav block (left) + default content (right) */
+main .section.guidelines-body {
+  box-sizing: border-box;
+  max-width: var(--content-max-width, 1200px);
+  margin: 0 auto;
+  padding: 40px 24px 56px;
+}
+
+/* the section's wrappers stack on mobile, sit side-by-side on desktop */
+main .section.guidelines-body > div {
+  max-width: unset;
+  margin: 0;
+  padding: 0;
 }
 
 @media (width >= 900px) {
-  main .section.guidelines-body .columns > div > div:first-child {
-    flex: 0 0 240px;
+  main .section.guidelines-body {
+    display: flex;
+    align-items: start;
+    gap: 64px;
+    padding: 40px 32px 56px;
+  }
 
-    /* keep the side menu aligned to the left as the page scrolls; offset by
-       the fixed header height plus a little breathing room */
-    position: sticky;
-    top: calc(var(--nav-height) + 24px);
-    align-self: start;
-    max-height: calc(100vh - var(--nav-height) - 48px);
-    overflow-y: auto;
+  main .section.guidelines-body > .sidenav-wrapper {
+    flex: 0 0 240px;
+  }
+
+  main .section.guidelines-body > .default-content-wrapper {
+    flex: 1 1 auto;
+    min-width: 0;
   }
 }
 
-/* side menu list */
-main .section.guidelines-body .columns > div > div:first-child ul {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-
-main .section.guidelines-body .columns > div > div:first-child > ul > li {
-  margin-bottom: 14px;
-}
-
-main .section.guidelines-body .columns > div > div:first-child ul ul {
-  margin: 12px 0 0 16px;
-}
-
-main .section.guidelines-body .columns > div > div:first-child ul ul li {
-  margin-bottom: 12px;
-}
-
-main .section.guidelines-body .columns > div > div:first-child a:any-link,
-main .section.guidelines-body .columns > div > div:first-child a.button:any-link {
-  display: inline;
-  margin: 0;
-  padding: 0;
-  border: none;
-  border-radius: 0;
-  background: none;
-  color: var(--att-blue-dark);
-  font-size: 16px;
-  font-weight: 400;
-  text-decoration: none;
-  white-space: normal;
-}
-
-main .section.guidelines-body .columns > div > div:first-child a:hover {
-  background: none;
-  text-decoration: underline;
-}
-
-/* side-menu list items may be wrapped in <p> by DA — drop the paragraph margins */
-main .section.guidelines-body .columns > div > div:first-child li p {
-  margin: 0;
-}
-
-/* eyebrow label above the side menu */
-main .section.guidelines-body .columns > div > div:first-child > p:first-child {
-  margin: 0 0 20px;
-  font-size: 13px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #6c6c6c;
-}
-
-/* content column headings + copy */
-main .section.guidelines-body .columns > div > div:last-child h1 {
+/* content headings + copy */
+main .section.guidelines-body .default-content-wrapper h1 {
   color: var(--att-blue-dark);
   font-weight: 300;
   font-size: 40px;
   margin-top: 0;
 }
 
-main .section.guidelines-body .columns > div > div:last-child h2 {
+main .section.guidelines-body .default-content-wrapper h2 {
   color: var(--text-color);
   font-weight: 500;
   font-size: 26px;
   margin-top: 1.2em;
 }
 
-/* content-column tile grids: any <ul> in the content column renders as an
-   image-tile grid with a clickable title below each image (1/2/3-up). */
-/* stylelint-disable-next-line no-descending-specificity */
-main .section.guidelines-body .columns > div > div:last-child ul {
+/* content tile grids: any <ul> in the content renders as an image-tile grid
+   with a clickable title below each image (1/2/3-up). */
+main .section.guidelines-body .default-content-wrapper ul {
   list-style: none;
   margin: 24px 0 40px;
   padding: 0;
@@ -404,16 +362,15 @@ main .section.guidelines-body .columns > div > div:last-child ul {
   gap: 24px 32px;
 }
 
-/* stylelint-disable-next-line no-descending-specificity */
-main .section.guidelines-body .columns > div > div:last-child ul > li {
+main .section.guidelines-body .default-content-wrapper ul > li {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin: 0;
 }
 
-main .section.guidelines-body .columns > div > div:last-child ul > li picture,
-main .section.guidelines-body .columns > div > div:last-child ul > li img {
+main .section.guidelines-body .default-content-wrapper ul > li picture,
+main .section.guidelines-body .default-content-wrapper ul > li img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -421,24 +378,24 @@ main .section.guidelines-body .columns > div > div:last-child ul > li img {
   display: block;
 }
 
-main .section.guidelines-body .columns > div > div:last-child ul > li a:any-link {
+main .section.guidelines-body .default-content-wrapper ul > li a:any-link {
   color: var(--att-blue-dark);
   font-size: 16px;
   text-decoration: none;
 }
 
-main .section.guidelines-body .columns > div > div:last-child ul > li a:hover {
+main .section.guidelines-body .default-content-wrapper ul > li a:hover {
   text-decoration: underline;
 }
 
 @media (width >= 600px) {
-  main .section.guidelines-body .columns > div > div:last-child ul {
+  main .section.guidelines-body .default-content-wrapper ul {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (width >= 900px) {
-  main .section.guidelines-body .columns > div > div:last-child ul {
+  main .section.guidelines-body .default-content-wrapper ul {
     grid-template-columns: repeat(3, 1fr);
   }
 }

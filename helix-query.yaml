@@ -1,0 +1,23 @@
+version: 1
+
+indices:
+  guidelines:
+    include:
+      - '/att-brand-center/guidelines/**'
+    target: /att-brand-center/guidelines/query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      navTitle:
+        select: head > meta[name="nav-title"]
+        value: attribute(el, 'content')
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, 'content')
+      parent:
+        select: head > meta[name="parent"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
