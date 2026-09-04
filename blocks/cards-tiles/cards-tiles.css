@@ -1,0 +1,61 @@
+/* cards-tiles — image tile + clickable title below; responsive 1/2/3-up grid */
+.cards-tiles > ul {
+  list-style: none;
+  margin: 24px 0 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px 32px;
+}
+
+.cards-tiles > ul > li {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  border: none;
+  background: none;
+}
+
+/* square image tile */
+.cards-tiles .cards-tiles-tile-image {
+  line-height: 0;
+}
+
+.cards-tiles .cards-tiles-tile-image img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 2px;
+}
+
+/* clickable title below the tile */
+.cards-tiles .cards-tiles-tile-body {
+  margin: 0;
+}
+
+.cards-tiles .cards-tiles-tile-body p {
+  margin: 0;
+}
+
+.cards-tiles .cards-tiles-tile-body a:any-link {
+  color: var(--att-blue-dark);
+  font-size: 16px;
+  font-weight: 400;
+  text-decoration: none;
+}
+
+.cards-tiles .cards-tiles-tile-body a:hover {
+  text-decoration: underline;
+}
+
+@media (width >= 600px) {
+  .cards-tiles > ul {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (width >= 900px) {
+  .cards-tiles > ul {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}

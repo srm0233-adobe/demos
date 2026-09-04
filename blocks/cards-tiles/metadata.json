@@ -1,0 +1,34 @@
+{
+  "variantName": "cards-tiles",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-04T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://brandcenter.att.com/brand/home.html#/gdls",
+    "originPage": "AT&T Brand Center guidelines detail page",
+    "blockPosition": "content-body"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "content-navigation-tiles",
+    "imagePattern": "square"
+  },
+  "contentPattern": {
+    "structure": "per tile: square image + clickable title below",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "image-tile navigation grids with a linked title below the image",
+      "3-up content grids under a section heading (guidelines detail pages)",
+      "topic/category tiles that link to sub-pages"
+    ],
+    "notSuitableFor": [
+      "cards that need a description paragraph (use cards-popular)",
+      "compact side-by-side icon + label rows (use cards-category)"
+    ]
+  }
+}
