@@ -312,6 +312,14 @@ main .section.guidelines-body .columns > div {
 @media (width >= 900px) {
   main .section.guidelines-body .columns > div > div:first-child {
     flex: 0 0 240px;
+
+    /* keep the side menu aligned to the left as the page scrolls; offset by
+       the fixed header height plus a little breathing room */
+    position: sticky;
+    top: calc(var(--nav-height) + 24px);
+    align-self: start;
+    max-height: calc(100vh - var(--nav-height) - 48px);
+    overflow-y: auto;
   }
 }
 
