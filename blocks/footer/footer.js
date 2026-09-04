@@ -5,10 +5,11 @@ import { loadFragment } from '../fragment/fragment.js';
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // load footer as fragment — metadata-independent dual-fetch:
-  // /content/footer first (localhost / aem up), then /footer (DA/EDS production).
-  let fragment = await loadFragment('/content/footer');
-  if (!fragment) fragment = await loadFragment('/footer');
+  // load footer as fragment — metadata-independent dual-fetch. The footer lives
+  // in the att-brand-center section: /content/att-brand-center/footer (localhost
+  // / aem up) first, then /att-brand-center/footer (DA/EDS production).
+  let fragment = await loadFragment('/content/att-brand-center/footer');
+  if (!fragment) fragment = await loadFragment('/att-brand-center/footer');
 
   // decorate footer DOM
   block.textContent = '';
