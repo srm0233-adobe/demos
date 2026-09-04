@@ -45,10 +45,11 @@ function icon(name) {
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
-  // load nav as fragment — metadata-independent dual-fetch:
-  // /content/nav first (localhost / aem up), then /nav (DA/EDS production).
-  let fragment = await loadFragment('/content/nav');
-  if (!fragment) fragment = await loadFragment('/nav');
+  // load nav as fragment — metadata-independent dual-fetch. The nav lives in
+  // the att-brand-center section: /content/att-brand-center/nav (localhost /
+  // aem up) first, then /att-brand-center/nav (DA/EDS production).
+  let fragment = await loadFragment('/content/att-brand-center/nav');
+  if (!fragment) fragment = await loadFragment('/att-brand-center/nav');
 
   // The fragment sections, in order:
   //   0: logo, 1: megamenu columns, 2: My Workspace, 3: brand options, 4: popular searches
