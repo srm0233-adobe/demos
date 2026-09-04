@@ -265,86 +265,50 @@ main .section.att-blue h2 {
   margin-bottom: 0.6em;
 }
 
-/* ===== Guidelines detail page ===== */
-
-/* blue hero band: breadcrumb + big title + Share */
-main .section.guidelines-hero {
-  background-color: var(--att-blue);
-  color: #fff;
-  margin: 0;
-  padding: 40px 0 96px;
-}
-
-main .section.guidelines-hero > div {
-  max-width: var(--content-max-width, 1200px);
-  margin: 0 auto;
-}
-
-main .section.guidelines-hero h1 {
-  color: #fff;
-  font-weight: 300;
-  font-size: 56px;
-  margin: 64px 0 0;
-}
-
-/* breadcrumb row (first paragraph) + Share (last paragraph) */
-main .section.guidelines-hero p {
-  color: #fff;
-  font-size: 14px;
-  margin: 0;
-}
-
-main .section.guidelines-hero a:any-link {
-  color: #fff;
-  text-decoration: none;
-}
-
-main .section.guidelines-hero a:hover {
-  text-decoration: underline;
-}
-
-/* body: folder-driven sidenav block (left) + default content (right) */
-main .section.guidelines-body {
+/* ===== Section + Sidenav template layout =====
+   Any section that contains a Sidenav block (EDS adds .sidenav-container to
+   that section) becomes a two-column layout: sticky side nav (left) + the
+   section's default content (right). Reusable across sections. */
+main .section.sidenav-container {
   box-sizing: border-box;
   max-width: var(--content-max-width, 1200px);
   margin: 0 auto;
   padding: 40px 24px 56px;
 }
 
-/* the section's wrappers stack on mobile, sit side-by-side on desktop */
-main .section.guidelines-body > div {
+main .section.sidenav-container > div {
   max-width: unset;
   margin: 0;
   padding: 0;
 }
 
 @media (width >= 900px) {
-  main .section.guidelines-body {
+  main .section.sidenav-container {
     display: flex;
     align-items: start;
     gap: 64px;
     padding: 40px 32px 56px;
   }
 
-  main .section.guidelines-body > .sidenav-wrapper {
+  main .section.sidenav-container > .sidenav-wrapper {
     flex: 0 0 240px;
   }
 
-  main .section.guidelines-body > .default-content-wrapper {
+  main .section.sidenav-container > .default-content-wrapper {
     flex: 1 1 auto;
     min-width: 0;
   }
 }
 
 /* content headings + copy */
-main .section.guidelines-body .default-content-wrapper h1 {
+main .section.sidenav-container .default-content-wrapper h1 {
   color: var(--att-blue-dark);
   font-weight: 300;
   font-size: 40px;
   margin-top: 0;
 }
 
-main .section.guidelines-body .default-content-wrapper h2 {
+main .section.sidenav-container .default-content-wrapper h2 {
   color: var(--text-color);
   font-weight: 500;
   font-size: 26px;
@@ -353,7 +317,7 @@ main .section.guidelines-body .default-content-wrapper h2 {
 
 /* content tile grids: any <ul> in the content renders as an image-tile grid
    with a clickable title below each image (1/2/3-up). */
-main .section.guidelines-body .default-content-wrapper ul {
+main .section.sidenav-container .default-content-wrapper ul {
   list-style: none;
   margin: 24px 0 40px;
   padding: 0;
@@ -362,15 +326,15 @@ main .section.guidelines-body .default-content-wrapper ul {
   gap: 24px 32px;
 }
 
-main .section.guidelines-body .default-content-wrapper ul > li {
+main .section.sidenav-container .default-content-wrapper ul > li {
   display: flex;
   flex-direction: column;
   gap: 12px;
   margin: 0;
 }
 
-main .section.guidelines-body .default-content-wrapper ul > li picture,
-main .section.guidelines-body .default-content-wrapper ul > li img {
+main .section.sidenav-container .default-content-wrapper ul > li picture,
+main .section.sidenav-container .default-content-wrapper ul > li img {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
@@ -378,24 +342,24 @@ main .section.guidelines-body .default-content-wrapper ul > li img {
   display: block;
 }
 
-main .section.guidelines-body .default-content-wrapper ul > li a:any-link {
+main .section.sidenav-container .default-content-wrapper ul > li a:any-link {
   color: var(--att-blue-dark);
   font-size: 16px;
   text-decoration: none;
 }
 
-main .section.guidelines-body .default-content-wrapper ul > li a:hover {
+main .section.sidenav-container .default-content-wrapper ul > li a:hover {
   text-decoration: underline;
 }
 
 @media (width >= 600px) {
-  main .section.guidelines-body .default-content-wrapper ul {
+  main .section.sidenav-container .default-content-wrapper ul {
     grid-template-columns: repeat(2, 1fr);
   }
 }
 
 @media (width >= 900px) {
-  main .section.guidelines-body .default-content-wrapper ul {
+  main .section.sidenav-container .default-content-wrapper ul {
     grid-template-columns: repeat(3, 1fr);
   }
 }

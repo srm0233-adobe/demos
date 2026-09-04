@@ -1,0 +1,62 @@
+/* section-hero — reusable blue section hero band */
+.section-hero-container {
+  background-color: var(--att-blue);
+}
+
+.section-hero-wrapper {
+  max-width: unset;
+  padding: 0;
+}
+
+.section-hero {
+  color: #fff;
+}
+
+.section-hero .section-hero-inner {
+  box-sizing: border-box;
+  max-width: var(--content-max-width, 1200px);
+  margin: 0 auto;
+  padding: 40px 24px 96px;
+}
+
+.section-hero .section-hero-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.section-hero .section-hero-breadcrumb {
+  margin: 0;
+  color: #fff;
+  font-size: 14px;
+}
+
+.section-hero .section-hero-share {
+  color: #fff;
+  font-size: 14px;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.section-hero .section-hero-title {
+  margin: 64px 0 0;
+  color: #fff;
+  font-weight: 300;
+  font-size: 56px;
+}
+
+.section-hero a:any-link {
+  color: #fff;
+  text-decoration: none;
+}
+
+.section-hero a:hover {
+  text-decoration: underline;
+}
+
+@media (width >= 900px) {
+  .section-hero .section-hero-inner {
+    padding: 40px 32px 96px;
+  }
+}
