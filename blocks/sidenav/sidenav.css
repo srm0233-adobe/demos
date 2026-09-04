@@ -38,6 +38,30 @@
   font-weight: 700;
 }
 
+/* in-page jump links (nested under the active page) */
+.sidenav .sidenav-sublist {
+  list-style: none;
+  margin: 12px 0 0 16px;
+  padding: 0;
+}
+
+.sidenav .sidenav-sublist > li {
+  margin-bottom: 12px;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+.sidenav .sidenav-sublist a:any-link {
+  color: var(--att-blue-dark);
+  font-size: 15px;
+  font-weight: 400;
+}
+
+/* section currently in view (scrollspy) */
+.sidenav .sidenav-sublist li.sidenav-subactive > a:any-link {
+  color: var(--text-color);
+  font-weight: 700;
+}
+
 @media (width >= 900px) {
   /* stick to the left as the page scrolls, offset below the fixed header */
   .sidenav {
