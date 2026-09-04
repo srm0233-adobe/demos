@@ -334,14 +334,29 @@ main .section.guidelines-body .columns > div > div:first-child ul ul li {
   margin-bottom: 12px;
 }
 
-main .section.guidelines-body .columns > div > div:first-child a:any-link {
+main .section.guidelines-body .columns > div > div:first-child a:any-link,
+main .section.guidelines-body .columns > div > div:first-child a.button:any-link {
+  display: inline;
+  margin: 0;
+  padding: 0;
+  border: none;
+  border-radius: 0;
+  background: none;
   color: var(--att-blue-dark);
   font-size: 16px;
+  font-weight: 400;
   text-decoration: none;
+  white-space: normal;
 }
 
 main .section.guidelines-body .columns > div > div:first-child a:hover {
+  background: none;
   text-decoration: underline;
+}
+
+/* side-menu list items may be wrapped in <p> by DA — drop the paragraph margins */
+main .section.guidelines-body .columns > div > div:first-child li p {
+  margin: 0;
 }
 
 /* eyebrow label above the side menu */
