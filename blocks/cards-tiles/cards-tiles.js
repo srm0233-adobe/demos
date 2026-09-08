@@ -19,8 +19,18 @@ export default function decorate(block) {
       else div.className = 'cards-tiles-tile-body';
     });
 
-    // Auto-link the image to the caption's destination (single authored link).
+    // Caption links must render as plain text links, not EDS button CTAs.
+    // A link that is the only content in its cell gets decorated as .button /
+    // wrapped in .button-container; undo that here.
     const body = li.querySelector('.cards-tiles-tile-body');
+    if (body) {
+      body.querySelectorAll('a.button').forEach((a) => a.classList.remove('button'));
+      body.querySelectorAll('.button-container').forEach((wrap) => {
+        wrap.classList.remove('button-container');
+      });
+    }
+
+    // Auto-link the image to the caption's destination (single authored link).
     const imageCell = li.querySelector('.cards-tiles-tile-image');
     const captionLink = body ? body.querySelector('a[href]') : null;
     const picture = imageCell ? imageCell.querySelector('picture') : null;
