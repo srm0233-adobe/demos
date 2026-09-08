@@ -315,9 +315,22 @@ main .sidenav-layout .sidenav-content-col > .section.sidenav-content + .section.
   }
 
   main .sidenav-layout > .sidenav-content-col {
-    flex: 1 1 auto;
+    flex: 1 1 0%;
+    width: auto;
     min-width: 0;
   }
+}
+
+/* content column + its sections are always full-width block flow (guards
+   against the content ever collapsing to the rail's width) */
+main .sidenav-layout .sidenav-content-col {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+main .sidenav-layout .sidenav-content-col > .section.sidenav-content {
+  width: 100%;
 }
 
 /* content headings by level — author picks the style via the heading level:
