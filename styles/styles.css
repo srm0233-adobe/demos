@@ -290,8 +290,17 @@ main .section.sidenav-container > div {
     padding: 40px 32px 56px;
   }
 
+  /* The sidenav column is the sticky element: its parent (the flex section) is
+     as tall as the content column, giving it room to travel. Sticking the
+     inner .sidenav block instead does nothing — its own wrapper is only as
+     tall as the block. */
   main .section.sidenav-container > .sidenav-wrapper {
     flex: 0 0 240px;
+    position: sticky;
+    top: calc(var(--nav-height) + 24px);
+    align-self: start;
+    max-height: calc(100vh - var(--nav-height) - 48px);
+    overflow-y: auto;
   }
 
   main .section.sidenav-container > .default-content-wrapper {

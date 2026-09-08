@@ -62,13 +62,6 @@
   font-weight: 700;
 }
 
-@media (width >= 900px) {
-  /* stick to the left as the page scrolls, offset below the fixed header */
-  .sidenav {
-    position: sticky;
-    top: calc(var(--nav-height) + 24px);
-    align-self: start;
-    max-height: calc(100vh - var(--nav-height) - 48px);
-    overflow-y: auto;
-  }
-}
+/* Note: stickiness lives on the section's .sidenav-wrapper (see styles.css),
+   not on this block — the block's own wrapper is only as tall as the block, so
+   sticking it here would have no travel room. */
