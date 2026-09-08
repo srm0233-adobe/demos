@@ -16,19 +16,20 @@
   background: none;
 }
 
-/* square image tile */
+/* image tile — 227x162 on desktop, scales down responsively on smaller screens */
 .cards-tiles .cards-tiles-tile-image {
   line-height: 0;
 }
 
 .cards-tiles .cards-tiles-tile-image img {
   width: 100%;
-  aspect-ratio: 1 / 1;
+  max-width: 227px;
+  aspect-ratio: 227 / 162;
   object-fit: cover;
   border-radius: 2px;
 }
 
-/* clickable title below the tile */
+/* clickable title below the tile — blue link text, no background */
 .cards-tiles .cards-tiles-tile-body {
   margin: 0;
 }
@@ -38,7 +39,8 @@
 }
 
 .cards-tiles .cards-tiles-tile-body a:any-link {
-  color: var(--att-blue-dark);
+  color: #0057b8;
+  background: none;
   font-size: 16px;
   font-weight: 400;
   text-decoration: none;
@@ -46,6 +48,14 @@
 
 .cards-tiles .cards-tiles-tile-body a:hover {
   text-decoration: underline;
+}
+
+@media (width >= 900px) {
+  /* fixed 227x162 image on desktop */
+  .cards-tiles .cards-tiles-tile-image img {
+    width: 227px;
+    height: 162px;
+  }
 }
 
 @media (width >= 600px) {
