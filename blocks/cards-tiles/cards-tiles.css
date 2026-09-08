@@ -21,6 +21,12 @@
   line-height: 0;
 }
 
+/* image link wrapper (auto-added by the block) sizes to the image */
+.cards-tiles .cards-tiles-tile-image-link {
+  display: inline-block;
+  line-height: 0;
+}
+
 .cards-tiles .cards-tiles-tile-image img {
   width: 100%;
   max-width: 227px;
@@ -42,7 +48,7 @@
   color: #0057b8;
   background: none;
   font-size: 16px;
-  font-weight: 400;
+  font-weight: 700;
   text-decoration: none;
 }
 
