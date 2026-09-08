@@ -266,35 +266,46 @@ main .section.att-blue h2 {
 }
 
 /* ===== Section + Sidenav template layout =====
-   Any section that contains a Sidenav block (EDS adds .sidenav-container to
-   that section) becomes a two-column layout: sticky side nav (left) + the
-   section's default content (right). Reusable across sections. */
-main .section.sidenav-container {
+   A Sidenav block's section (.sidenav-container) plus the content sections that
+   follow it (.sidenav-content) are wrapped by decorateSidenavLayout into a
+   .sidenav-layout flex row: a sticky side-nav rail (left) + a column of content
+   sections (right). Authors add one content section per side-nav topic. */
+main > .sidenav-layout {
   box-sizing: border-box;
   max-width: var(--content-max-width, 1200px);
-  margin: 0 auto;
-  padding: 40px 24px 56px;
+  margin: 40px auto;
+  padding: 0 24px;
 }
 
-main .section.sidenav-container > div {
+/* the rail section and content column reset the default section chrome */
+main .sidenav-layout .section.sidenav-container,
+main .sidenav-layout .section.sidenav-content {
+  margin: 0;
+}
+
+main .sidenav-layout .section.sidenav-container > div,
+main .sidenav-layout .section.sidenav-content > div {
   max-width: unset;
   margin: 0;
   padding: 0;
 }
 
+/* space between stacked content sections */
+main .sidenav-layout .sidenav-content-col > .section.sidenav-content + .section.sidenav-content {
+  margin-top: 8px;
+}
+
 @media (width >= 900px) {
-  main .section.sidenav-container {
+  main > .sidenav-layout {
     display: flex;
     align-items: start;
     gap: 64px;
-    padding: 40px 32px 56px;
+    padding: 0 32px;
   }
 
-  /* The sidenav column is the sticky element: its parent (the flex section) is
-     as tall as the content column, giving it room to travel. Sticking the
-     inner .sidenav block instead does nothing — its own wrapper is only as
-     tall as the block. */
-  main .section.sidenav-container > .sidenav-wrapper {
+  /* sticky rail — its parent (.sidenav-layout) is as tall as the content
+     column, so it has room to travel */
+  main .sidenav-layout > .section.sidenav-container {
     flex: 0 0 240px;
     position: sticky;
     top: calc(var(--nav-height) + 24px);
@@ -303,7 +314,7 @@ main .section.sidenav-container > div {
     overflow-y: auto;
   }
 
-  main .section.sidenav-container > .default-content-wrapper {
+  main .sidenav-layout > .sidenav-content-col {
     flex: 1 1 auto;
     min-width: 0;
   }
@@ -312,12 +323,12 @@ main .section.sidenav-container > div {
 /* content headings by level — author picks the style via the heading level:
    H1 = blue lead heading, H2 = black section heading, H3 = blue banner box.
    scroll-margin-top clears the fixed header when jumping to a heading. */
-main .section.sidenav-container .default-content-wrapper :is(h1, h2, h3, h4) {
+main .sidenav-content .default-content-wrapper :is(h1, h2, h3, h4) {
   scroll-margin-top: calc(var(--nav-height) + 24px);
 }
 
-/* H1 — blue, large (page lead heading) */
-main .section.sidenav-container .default-content-wrapper h1 {
+/* H1 — blue, large (topic lead heading) */
+main .sidenav-content .default-content-wrapper h1 {
   color: var(--att-blue-dark);
   font-weight: 300;
   font-size: 40px;
@@ -325,15 +336,15 @@ main .section.sidenav-container .default-content-wrapper h1 {
 }
 
 /* H2 — black, medium (section heading; appears in the side nav) */
-main .section.sidenav-container .default-content-wrapper h2 {
+main .sidenav-content .default-content-wrapper h2 {
   color: var(--text-color);
   font-weight: 500;
   font-size: 26px;
-  margin-top: 1.4em;
+  margin-top: 0;
 }
 
 /* H3 — blue box with white text (section banner) */
-main .section.sidenav-container .default-content-wrapper h3 {
+main .sidenav-content .default-content-wrapper h3 {
   box-sizing: border-box;
   margin: 1.4em 0 0.8em;
   padding: 14px 20px;
@@ -341,53 +352,4 @@ main .section.sidenav-container .default-content-wrapper h3 {
   color: #fff;
   font-weight: 500;
   font-size: 20px;
-}
-
-/* content tile grids: any <ul> in the content renders as an image-tile grid
-   with a clickable title below each image (1/2/3-up). */
-main .section.sidenav-container .default-content-wrapper ul {
-  list-style: none;
-  margin: 24px 0 40px;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px 32px;
-}
-
-main .section.sidenav-container .default-content-wrapper ul > li {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin: 0;
-}
-
-main .section.sidenav-container .default-content-wrapper ul > li picture,
-main .section.sidenav-container .default-content-wrapper ul > li img {
-  width: 100%;
-  aspect-ratio: 1 / 1;
-  object-fit: cover;
-  border-radius: 2px;
-  display: block;
-}
-
-main .section.sidenav-container .default-content-wrapper ul > li a:any-link {
-  color: var(--att-blue-dark);
-  font-size: 16px;
-  text-decoration: none;
-}
-
-main .section.sidenav-container .default-content-wrapper ul > li a:hover {
-  text-decoration: underline;
-}
-
-@media (width >= 600px) {
-  main .section.sidenav-container .default-content-wrapper ul {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
-
-@media (width >= 900px) {
-  main .section.sidenav-container .default-content-wrapper ul {
-    grid-template-columns: repeat(3, 1fr);
-  }
 }

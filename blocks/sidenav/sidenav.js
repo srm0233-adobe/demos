@@ -111,19 +111,24 @@ function inPageLevels(config) {
   return raw.split(',').map((s) => s.trim()).filter((s) => /^h[1-6]$/.test(s));
 }
 
-/** Collect content headings (at the given levels) from the page's default content. */
+/** Collect content headings (at the given levels) from the page's content
+ *  sections. Scopes to the .sidenav-content sections (the per-topic body
+ *  sections), falling back to the whole main if none are present yet. */
 function collectSectionHeadings(levels) {
   if (!levels.length) return [];
-  const scope = document.querySelector('main .sidenav-container .default-content-wrapper')
-    || document.querySelector('main');
-  if (!scope) return [];
+  const contentSections = [...document.querySelectorAll('main .sidenav-content .default-content-wrapper')];
+  const scopes = contentSections.length ? contentSections : [document.querySelector('main')].filter(Boolean);
+  if (!scopes.length) return [];
   const sel = levels.join(',');
-  return [...scope.querySelectorAll(sel)]
-    .filter((h) => h.textContent.trim())
-    .map((h) => {
+  const headings = [];
+  scopes.forEach((scope) => {
+    [...scope.querySelectorAll(sel)].forEach((h) => {
+      if (!h.textContent.trim()) return;
       if (!h.id) h.id = slug(h.textContent);
-      return { id: h.id, text: h.textContent.trim(), el: h };
+      headings.push({ id: h.id, text: h.textContent.trim(), el: h });
     });
+  });
+  return headings;
 }
 
 /** Highlight the in-view section link as the user scrolls (scrollspy). */

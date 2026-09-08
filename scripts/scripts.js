@@ -127,6 +127,45 @@ function decorateSections(main) {
 }
 
 /**
+ * Wraps a Sidenav rail section and its following content sections into a
+ * two-column layout, so the sticky side nav travels alongside the whole stack
+ * of content sections (sticky needs one tall shared parent — sibling sections
+ * alone don't provide it).
+ *
+ * Structure it produces:
+ *   main
+ *     .section.section-hero-container        (untouched, full-width)
+ *     .sidenav-layout
+ *       .section.sidenav-container            (the rail — sticky)
+ *       .sidenav-content-col
+ *         .section.sidenav-content ...         (one per topic)
+ *
+ * A content section opts in with the "sidenav-content" section style. Runs
+ * after decorateSections/decorateBlocks so .sidenav-container exists.
+ * @param {Element} main The main element
+ */
+function decorateSidenavLayout(main) {
+  const rail = main.querySelector(':scope > .section.sidenav-container');
+  if (!rail) return;
+
+  const layout = document.createElement('div');
+  layout.className = 'sidenav-layout';
+  const contentCol = document.createElement('div');
+  contentCol.className = 'sidenav-content-col';
+
+  rail.replaceWith(layout);
+  layout.append(rail, contentCol);
+
+  // Move every immediately-following content section into the content column.
+  let next = layout.nextElementSibling;
+  while (next && next.classList.contains('sidenav-content')) {
+    const after = next.nextElementSibling;
+    contentCol.append(next);
+    next = after;
+  }
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -138,6 +177,7 @@ export function decorateMain(main) {
   buildAutoBlocks(main);
   decorateSections(main);
   decorateBlocks(main);
+  decorateSidenavLayout(main);
 }
 
 /**
