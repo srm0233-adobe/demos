@@ -166,6 +166,35 @@ function decorateSidenavLayout(main) {
 }
 
 /**
+ * Preserves animated images (e.g. .gif). The rendering pipeline emits a
+ * <picture> whose <source>/<img> use format=webply/optimize, which re-encodes
+ * to a single static frame and kills the animation. For any <picture> whose
+ * underlying asset is a .gif, replace it with a plain <img> pointing at the
+ * original (un-optimized) GIF so the browser plays it.
+ * @param {Element} main The container element
+ */
+function fixAnimatedImages(main) {
+  main.querySelectorAll('picture').forEach((picture) => {
+    const img = picture.querySelector('img');
+    if (!img) return;
+    // Base path without query params; .gif detection is case-insensitive.
+    const raw = img.getAttribute('src') || '';
+    const base = raw.split('?')[0];
+    if (!/\.gif$/i.test(base)) return;
+
+    const gif = document.createElement('img');
+    gif.src = base; // original gif, no format/optimize -> animation preserved
+    gif.alt = img.getAttribute('alt') || '';
+    gif.loading = img.getAttribute('loading') || 'lazy';
+    const w = img.getAttribute('width');
+    const h = img.getAttribute('height');
+    if (w) gif.width = w;
+    if (h) gif.height = h;
+    picture.replaceWith(gif);
+  });
+}
+
+/**
  * Decorates the main element.
  * @param {Element} main The main element
  */
@@ -178,6 +207,7 @@ export function decorateMain(main) {
   decorateSections(main);
   decorateBlocks(main);
   decorateSidenavLayout(main);
+  fixAnimatedImages(main);
 }
 
 /**

@@ -268,6 +268,17 @@ function createOptimizedPicture(
   const { origin, pathname } = url;
   const ext = pathname.split('.').pop();
 
+  // Animated formats (gif) must not be re-encoded/optimized or they lose their
+  // animation — return a plain unoptimized <img> inside the picture instead.
+  if (ext.toLowerCase() === 'gif') {
+    const img = document.createElement('img');
+    img.setAttribute('loading', eager ? 'eager' : 'lazy');
+    img.setAttribute('alt', alt);
+    img.setAttribute('src', `${origin}${pathname}`);
+    picture.appendChild(img);
+    return picture;
+  }
+
   // webp
   breakpoints.forEach((br) => {
     const source = document.createElement('source');
