@@ -1,0 +1,43 @@
+/* Ingredients — checkable ingredient list. Structural styles only. */
+
+.ingredients .ingredients-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ingredients .ingredients-item {
+  margin: 0;
+}
+
+.ingredients .ingredients-check {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  cursor: pointer;
+}
+
+.ingredients .ingredients-check input[type='checkbox'] {
+  flex: 0 0 auto;
+  margin-top: 0.2em;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+.ingredients .ingredients-text {
+  flex: 1 1 auto;
+}
+
+.ingredients .ingredients-text p {
+  margin: 0;
+}
+
+/* A checked ingredient is visually struck through. */
+.ingredients .ingredients-check input[type='checkbox']:checked + .ingredients-text {
+  text-decoration: line-through;
+  opacity: 0.6;
+}

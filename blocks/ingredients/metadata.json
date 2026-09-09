@@ -1,0 +1,41 @@
+{
+  "variantName": "ingredients",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-09T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.foodnetwork.com/recipes/sunny-anderson/apple-cider-chicken-recipe-1952273",
+    "originPage": "Food Network recipe detail page",
+    "blockPosition": "recipe-body-left"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "ingredients-list",
+    "imagePattern": "none"
+  },
+  "contentPattern": {
+    "structure": "one row per ingredient (single text cell); each renders as a checkbox list item that can be ticked off",
+    "buttonCount": 0,
+    "imageCount": 0,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "recipe ingredient checklists",
+      "any checkable shopping/prep list of short text lines"
+    ],
+    "notSuitableFor": [
+      "numbered sequential steps (use directions)",
+      "image-led card grids (use cards)"
+    ]
+  },
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["ingredients"],
+  "usage": {
+    "pagesUsing": ["/foodnetwork/apple-cider-chicken"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-09T00:00:00.000Z"
+  }
+}

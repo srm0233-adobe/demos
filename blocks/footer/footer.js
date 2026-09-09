@@ -5,11 +5,19 @@ import { loadFragment } from '../fragment/fragment.js';
  * @param {Element} block The footer block element
  */
 export default async function decorate(block) {
-  // load footer as fragment — metadata-independent dual-fetch. The footer lives
-  // in the att-brand-center section: /content/att-brand-center/footer (localhost
-  // / aem up) first, then /att-brand-center/footer (DA/EDS production).
-  let fragment = await loadFragment('/content/att-brand-center/footer');
-  if (!fragment) fragment = await loadFragment('/att-brand-center/footer');
+  // Pick the footer fragment by site section: Food Network pages get the Food
+  // Network footer, everything else gets the AT&T Brand Center footer. Each is
+  // a metadata-independent dual-fetch (localhost / aem up path first, then the
+  // DA/EDS production path).
+  const isFoodNetwork = window.location.pathname.replace('/content', '').startsWith('/foodnetwork');
+  let fragment;
+  if (isFoodNetwork) {
+    fragment = await loadFragment('/content/foodnetwork/footer');
+    if (!fragment) fragment = await loadFragment('/foodnetwork/footer');
+  } else {
+    fragment = await loadFragment('/content/att-brand-center/footer');
+    if (!fragment) fragment = await loadFragment('/att-brand-center/footer');
+  }
 
   // decorate footer DOM
   block.textContent = '';

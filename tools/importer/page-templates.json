@@ -6,81 +6,123 @@
     {
       "name": "home",
       "urls": [
-        "http://localhost:8899/home.html"
+        "https://www.foodnetwork.com/"
       ],
-      "representativeUrl": "http://localhost:8899/home.html",
-      "description": "AT&T Brand Center home page: hero, popular-items cards, custom photography carousel, FAQ bar.",
-      "urlPattern": "/*",
+      "representativeUrl": "https://www.foodnetwork.com/",
+      "description": "To be named in naming step",
+      "blocks": [],
+      "urlPattern": "/"
+    },
+    {
+      "name": "recipe",
+      "urls": [
+        "https://www.foodnetwork.com/recipes/sunny-anderson/apple-cider-chicken-recipe-1952273"
+      ],
+      "representativeUrl": "https://www.foodnetwork.com/recipes/sunny-anderson/apple-cider-chicken-recipe-1952273",
+      "description": "Food Network recipe detail page",
+      "urlPattern": "/recipes/*",
       "blocks": [
         {
-          "name": "hero-banner",
+          "name": "recipe-hero",
           "instances": [
-            "body > section.hero-section"
+            "#mod-recipe-lead-1 > div.recipeLead",
+            "#mod-recipe-summary-1"
           ]
         },
         {
-          "name": "cards-popular",
+          "name": "recipe-meta",
           "instances": [
-            "body > section.popular-section.section > div.container > div.popular-cards"
+            "#mod-recipe-lead-1 > div.recipeInfo"
           ]
         },
         {
-          "name": "section-photography",
+          "name": "ingredients",
           "instances": [
-            "body > section.photography-section.att-blue.section"
-          ],
-          "section": "att-blue"
+            "section.o-Recipe .o-Ingredients"
+          ]
         },
         {
-          "name": "carousel-photo",
+          "name": "directions",
           "instances": [
-            "body > section.photography-section.att-blue.section .photo-cards"
+            "section.o-Recipe .o-Method"
+          ]
+        },
+        {
+          "name": "page-nav",
+          "instances": [
+            "div.assetNavigation"
+          ]
+        },
+        {
+          "name": "cards-tiles",
+          "instances": [
+            "section.o-Recommendations"
           ]
         }
       ],
       "sections": [
         {
           "id": "rc1",
-          "name": "Hero",
-          "selector": "body > section.hero-section",
+          "name": "Recipe Lead / Hero",
+          "selector": [
+            "#mod-recipe-lead-1"
+          ],
           "style": null,
           "blocks": [
-            "hero-banner"
+            "recipe-hero"
           ],
           "defaultContent": []
         },
         {
           "id": "rc2",
-          "name": "Popular items",
-          "selector": "body > section.popular-section.section",
+          "name": "Recipe Meta",
+          "selector": [
+            "#mod-recipe-lead-1 > div.recipeInfo"
+          ],
           "style": null,
           "blocks": [
-            "cards-popular"
+            "recipe-meta"
           ],
-          "defaultContent": [
-            "body > section.popular-section.section > div.container > div:nth-of-type(1)"
-          ]
+          "defaultContent": []
         },
         {
           "id": "rc3",
-          "name": "Custom Photography Collections",
-          "selector": "body > section.photography-section.att-blue.section",
-          "style": "att-blue",
-          "blocks": [
-            "carousel-photo"
+          "name": "Recipe Body (Ingredients + Directions)",
+          "selector": [
+            "section.o-Recipe > div.recipe-body",
+            "section.o-Recipe"
           ],
-          "defaultContent": [
-            "body > section.photography-section.att-blue.section > div.container > h2"
-          ]
+          "style": null,
+          "blocks": [
+            "ingredients",
+            "directions"
+          ],
+          "defaultContent": []
         },
         {
           "id": "rc4",
-          "name": "FAQ bar",
-          "selector": "body > section.faq-section.section",
+          "name": "Prev / Next Recipe Pager",
+          "selector": [
+            "div.assetNavigation"
+          ],
           "style": null,
-          "blocks": [],
+          "blocks": [
+            "page-nav"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "Looking for Something Else (Related Recipes)",
+          "selector": [
+            "section.flush-top"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-tiles"
+          ],
           "defaultContent": [
-            "body > section.faq-section.section > div.container > h4"
+            "section.flush-top h2"
           ]
         }
       ]

@@ -1,0 +1,37 @@
+/* Recipe Meta — compact horizontal stat strip. Structural styles only. */
+
+.recipe-meta .recipe-meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px 32px;
+  padding: 16px 0;
+  border-top: 1px solid;
+  border-bottom: 1px solid;
+}
+
+.recipe-meta .recipe-meta-item {
+  display: flex;
+  align-items: baseline;
+  gap: 6px;
+}
+
+.recipe-meta .recipe-meta-item p {
+  margin: 0;
+  display: inline;
+}
+
+.recipe-meta .recipe-meta-label {
+  font-weight: 700;
+}
+
+.recipe-meta .recipe-meta-label::after {
+  content: ':';
+}
+
+@media (width >= 900px) {
+  .recipe-meta .recipe-meta-strip {
+    flex-wrap: nowrap;
+    gap: 40px;
+  }
+}

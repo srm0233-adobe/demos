@@ -1,0 +1,17 @@
+{
+  "status": "success",
+  "url": "https://www.foodnetwork.com/recipes/sunny-anderson/apple-cider-chicken-recipe-1952273",
+  "path": "foodnetwork/apple-cider-chicken",
+  "timestamp": "2026-09-09T22:46:02.645Z",
+  "title": "Apple Cider Chicken Recipe | Sunny Anderson | Food Network",
+  "template": "recipe",
+  "blocks": [
+    "recipe-hero",
+    "recipe-hero",
+    "recipe-meta",
+    "ingredients",
+    "directions",
+    "page-nav",
+    "cards-tiles"
+  ]
+}

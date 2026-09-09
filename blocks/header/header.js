@@ -40,11 +40,90 @@ function icon(name) {
 }
 
 /**
+ * True when the current page lives in the Food Network section, so the header
+ * should render the Food Network nav rather than the AT&T Brand Center nav.
+ */
+function isFoodNetwork() {
+  return window.location.pathname.replace('/content', '').startsWith('/foodnetwork');
+}
+
+/**
+ * Loads and decorates the Food Network header: a wordmark on the left and a
+ * single horizontal row of primary category links. Kept intentionally simple
+ * (no megamenu / brand selector) to match the migrated recipe layout.
+ * @param {Element} block The header block element
+ */
+async function decorateFoodNetwork(block) {
+  let fragment = await loadFragment('/content/foodnetwork/nav');
+  if (!fragment) fragment = await loadFragment('/foodnetwork/nav');
+  if (!fragment) return;
+
+  const sections = [...fragment.children];
+  const logoLink = sections[0]?.querySelector('a');
+  const primaryList = sections[1]?.querySelector('ul');
+  const utilityList = sections[2]?.querySelector('ul');
+
+  block.textContent = '';
+  const nav = document.createElement('nav');
+  nav.id = 'nav';
+  nav.classList.add('nav-foodnetwork');
+
+  const bar = document.createElement('div');
+  bar.className = 'nav-bar';
+
+  const brand = document.createElement('div');
+  brand.className = 'nav-brand';
+  if (logoLink) {
+    const a = document.createElement('a');
+    a.href = logoLink.getAttribute('href');
+    a.textContent = logoLink.textContent;
+    brand.append(a);
+  }
+
+  const links = document.createElement('ul');
+  links.className = 'nav-links';
+  primaryList?.querySelectorAll(':scope > li > a').forEach((a) => {
+    const li = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = a.getAttribute('href');
+    link.textContent = a.textContent;
+    li.append(link);
+    links.append(li);
+  });
+
+  const utility = document.createElement('ul');
+  utility.className = 'nav-utility';
+  utilityList?.querySelectorAll(':scope > li > a').forEach((a) => {
+    const li = document.createElement('li');
+    const link = document.createElement('a');
+    link.href = a.getAttribute('href');
+    link.textContent = a.textContent;
+    li.append(link);
+    utility.append(li);
+  });
+
+  bar.append(brand, links);
+  if (utility.children.length) bar.append(utility);
+  nav.append(bar);
+
+  const navWrapper = document.createElement('div');
+  navWrapper.className = 'nav-wrapper';
+  navWrapper.append(nav);
+  block.append(navWrapper);
+}
+
+/**
  * loads and decorates the header for the AT&T Brand Center layout:
  * logo | Menu / Search / My Workspace | avatar + brand selector.
  * @param {Element} block The header block element
  */
 export default async function decorate(block) {
+  // Food Network pages get their own simpler nav; AT&T pages fall through.
+  if (isFoodNetwork()) {
+    await decorateFoodNetwork(block);
+    return;
+  }
+
   // load nav as fragment — metadata-independent dual-fetch. The nav lives in
   // the att-brand-center section: /content/att-brand-center/nav (localhost /
   // aem up) first, then /att-brand-center/nav (DA/EDS production).

@@ -66,8 +66,10 @@ function autolinkModals(doc) {
  */
 function buildAutoBlocks(main) {
   try {
-    // Skip the synthetic hero when an explicit hero/hero-banner block is authored.
-    if (!main.querySelector('.hero, .hero-banner')) buildHeroBlock(main);
+    // Skip the synthetic hero when an explicit hero-family block is authored
+    // (hero, hero-banner, or the Food Network recipe-hero) — otherwise the
+    // synthetic builder would steal that block's leading image + heading.
+    if (!main.querySelector('.hero, .hero-banner, .recipe-hero')) buildHeroBlock(main);
   } catch (error) {
     // eslint-disable-next-line no-console
     console.error('Auto Blocking failed', error);

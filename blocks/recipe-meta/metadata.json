@@ -1,0 +1,41 @@
+{
+  "variantName": "recipe-meta",
+  "baseBlock": "table",
+  "version": "1.0.0",
+  "created": "2026-09-09T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.foodnetwork.com/recipes/sunny-anderson/apple-cider-chicken-recipe-1952273",
+    "originPage": "Food Network recipe detail page",
+    "blockPosition": "below-hero"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "recipe-meta",
+    "imagePattern": "none"
+  },
+  "contentPattern": {
+    "structure": "one row per stat as a label/value pair, rendered inline as a single horizontal ruled strip; a single-cell row is a standalone value/link",
+    "buttonCount": 0,
+    "imageCount": 0,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "compact horizontal strips of labelled stats (recipe level/time/yield)",
+      "at-a-glance metadata bands under a detail-page title"
+    ],
+    "notSuitableFor": [
+      "multi-column tabular data (use table)",
+      "long-form descriptive content"
+    ]
+  },
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["recipe-meta"],
+  "usage": {
+    "pagesUsing": ["/foodnetwork/apple-cider-chicken"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-09T00:00:00.000Z"
+  }
+}

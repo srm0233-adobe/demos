@@ -1,0 +1,258 @@
+/*
+ * Food Network theme — scoped brand tokens + block styling.
+ *
+ * Everything here is scoped under `body.foodnetwork`, which the EDS
+ * `decorateTemplateAndTheme()` adds when a page carries a `Theme: foodnetwork`
+ * metadata value. This keeps the global AT&T Brand Center tokens in brand.css
+ * untouched — Food Network pages opt in, AT&T pages are unaffected.
+ *
+ * Brand values reflect the Food Network recipe page: a bold red accent, a
+ * clean sans body, a serif recipe title, and a light editorial layout.
+ */
+
+body.foodnetwork {
+  /* Food Network brand palette */
+  --fn-red: #c8102e;            /* primary Food Network red (logo, accents, rating stars) */
+  --fn-red-dark: #9e0c24;       /* hover / active red */
+  --fn-charcoal: #1a1a1a;       /* body text */
+  --fn-grey: #6b6b6b;           /* secondary/meta text */
+  --fn-rule: #e0e0e0;           /* hairline rules on meta strip / directions */
+  --fn-cream: #f7f5f0;          /* soft editorial background band */
+
+  /* map onto the global color system used across styles.css + blocks */
+  --background-color: #fff;
+  --light-color: var(--fn-cream);
+  --dark-color: #000;
+  --text-color: var(--fn-charcoal);
+  --link-color: var(--fn-red);
+  --link-hover-color: var(--fn-red-dark);
+
+  /* typography — clean sans body, serif for recipe titles */
+  --body-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
+  --heading-font-family: georgia, "Times New Roman", times, serif;
+  --heading-font-weight: 700;
+}
+
+/* ===== Global element theming (scoped to Food Network pages) ===== */
+
+body.foodnetwork a:hover {
+  text-decoration: underline;
+}
+
+/* Food Network primary button — solid red pill */
+body.foodnetwork a.button:any-link,
+body.foodnetwork button {
+  border-color: var(--fn-red);
+  background-color: var(--fn-red);
+  border-radius: 4px;
+}
+
+body.foodnetwork a.button:hover,
+body.foodnetwork a.button:focus,
+body.foodnetwork button:hover,
+body.foodnetwork button:focus {
+  border-color: var(--fn-red-dark);
+  background-color: var(--fn-red-dark);
+}
+
+/* ===== recipe-hero ===== */
+body.foodnetwork .recipe-hero .recipe-hero-eyebrow {
+  color: var(--fn-grey);
+  font-family: var(--body-font-family);
+  font-size: var(--body-font-size-xs);
+  font-weight: 700;
+}
+
+body.foodnetwork .recipe-hero .recipe-hero-eyebrow a {
+  color: var(--fn-charcoal);
+}
+
+body.foodnetwork .recipe-hero .recipe-hero-avatar {
+  border: 2px solid var(--fn-red);
+}
+
+body.foodnetwork .recipe-hero .recipe-hero-content h1 {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-xxl);
+  color: var(--fn-charcoal);
+}
+
+body.foodnetwork .recipe-hero .recipe-hero-rating {
+  color: var(--fn-red);
+  font-weight: 700;
+  font-size: var(--body-font-size-s);
+}
+
+/* WATCH play overlay — white pill on the photo */
+body.foodnetwork .recipe-hero .recipe-hero-watch {
+  border-radius: 999px;
+  background-color: rgb(0 0 0 / 55%);
+  color: #fff;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: var(--body-font-size-xs);
+}
+
+/* ===== recipe-meta ===== */
+body.foodnetwork .recipe-meta .recipe-meta-strip {
+  border-color: var(--fn-rule);
+  font-size: var(--body-font-size-s);
+}
+
+body.foodnetwork .recipe-meta .recipe-meta-label {
+  color: var(--fn-grey);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-size: var(--body-font-size-xs);
+}
+
+body.foodnetwork .recipe-meta .recipe-meta-value {
+  color: var(--fn-charcoal);
+  font-weight: 700;
+}
+
+body.foodnetwork .recipe-meta a:any-link {
+  color: var(--fn-red);
+  font-weight: 700;
+}
+
+/* Safety net: neutralize any residual button decoration on meta links so a
+   standalone link (e.g. "Nutrition Info") is plain text, not a red pill. */
+body.foodnetwork .recipe-meta a.button {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--fn-red);
+  font-weight: 700;
+  white-space: normal;
+}
+
+/* ===== ingredients ===== */
+body.foodnetwork .ingredients .ingredients-check input[type='checkbox'] {
+  accent-color: var(--fn-red);
+}
+
+body.foodnetwork .ingredients .ingredients-text {
+  font-size: var(--body-font-size-s);
+}
+
+/* ===== directions ===== */
+body.foodnetwork .directions .directions-step::before {
+  border-color: var(--fn-red);
+  background-color: var(--fn-red);
+  color: #fff;
+}
+
+body.foodnetwork .directions .directions-step-body {
+  font-size: var(--body-font-size-s);
+  line-height: 1.7;
+}
+
+/* ===== section headings on the recipe page (Ingredients / Directions / Looking for…) ===== */
+body.foodnetwork main .default-content-wrapper h2 {
+  font-family: var(--heading-font-family);
+  color: var(--fn-charcoal);
+  border-bottom: 3px solid var(--fn-red);
+  display: inline-block;
+  padding-bottom: 6px;
+}
+
+/* ===== Food Network header ===== */
+body.foodnetwork header {
+  height: auto;
+}
+
+body.foodnetwork .nav-foodnetwork {
+  border-bottom: 3px solid var(--fn-red);
+}
+
+body.foodnetwork .nav-foodnetwork .nav-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 24px;
+  max-width: var(--content-max-width, 1200px);
+  margin: 0 auto;
+  padding: 16px 24px;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-brand a {
+  font-family: var(--heading-font-family);
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--fn-red);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-links,
+body.foodnetwork .nav-foodnetwork .nav-utility {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-utility {
+  margin-left: auto;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-links a {
+  color: var(--fn-charcoal);
+  font-weight: 700;
+  font-size: var(--body-font-size-s);
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-links a:hover,
+body.foodnetwork .nav-foodnetwork .nav-utility a:hover {
+  color: var(--fn-red);
+  text-decoration: none;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-utility a {
+  color: var(--fn-grey);
+  font-size: var(--body-font-size-xs);
+}
+
+/* ===== Food Network footer ===== */
+body.foodnetwork footer {
+  background-color: var(--fn-charcoal);
+  color: #fff;
+}
+
+body.foodnetwork footer .footer > div {
+  max-width: var(--content-max-width, 1200px);
+  text-align: center;
+}
+
+body.foodnetwork footer .footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px 24px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+body.foodnetwork footer .footer a:any-link {
+  color: #fff;
+}
+
+body.foodnetwork footer .footer a:hover {
+  color: var(--fn-red);
+  text-decoration: underline;
+}
+
+body.foodnetwork footer .footer > div:last-child p {
+  color: #b3b3b3;
+  font-size: var(--body-font-size-xs);
+}

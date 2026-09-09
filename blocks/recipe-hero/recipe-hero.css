@@ -1,0 +1,105 @@
+/* Recipe Hero — light, centered recipe lead. Structural styles only. */
+
+.recipe-hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+}
+
+/* --- Media -------------------------------------------------------------- */
+.recipe-hero .recipe-hero-media {
+  width: 100%;
+}
+
+.recipe-hero .recipe-hero-image {
+  position: relative;
+  width: 100%;
+  line-height: 0;
+}
+
+.recipe-hero .recipe-hero-image picture,
+.recipe-hero .recipe-hero-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+/* WATCH play overlay centered over the photo. */
+.recipe-hero .recipe-hero-watch {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 20px;
+  line-height: 1;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.recipe-hero .recipe-hero-watch::after {
+  content: '';
+  display: inline-block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 0 6px 10px;
+  border-color: transparent transparent transparent currentcolor;
+}
+
+/* --- Content ------------------------------------------------------------ */
+.recipe-hero .recipe-hero-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.recipe-hero .recipe-hero-content > * {
+  margin: 0;
+}
+
+.recipe-hero .recipe-hero-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.recipe-hero .recipe-hero-avatar {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+
+.recipe-hero .recipe-hero-avatar picture,
+.recipe-hero .recipe-hero-avatar img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.recipe-hero .recipe-hero-content h1 {
+  margin: 0;
+}
+
+.recipe-hero .recipe-hero-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+@media (width >= 900px) {
+  .recipe-hero {
+    gap: 32px;
+  }
+}

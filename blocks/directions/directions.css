@@ -1,0 +1,45 @@
+/* Directions — auto-numbered recipe steps. Structural styles only. */
+
+.directions .directions-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  counter-reset: directions-step;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.directions .directions-step {
+  position: relative;
+  counter-increment: directions-step;
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.directions .directions-step::before {
+  content: counter(directions-step);
+  flex: 0 0 auto;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.directions .directions-step-body {
+  flex: 1 1 auto;
+}
+
+.directions .directions-step-body > * {
+  margin: 0;
+}
+
+.directions .directions-step-body p + p {
+  margin-top: 12px;
+}
