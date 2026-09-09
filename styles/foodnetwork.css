@@ -211,15 +211,15 @@ body.foodnetwork .nav-foodnetwork .nav-links a {
   letter-spacing: 0.02em;
 }
 
+body.foodnetwork .nav-foodnetwork .nav-utility a {
+  color: var(--fn-grey);
+  font-size: var(--body-font-size-xs);
+}
+
 body.foodnetwork .nav-foodnetwork .nav-links a:hover,
 body.foodnetwork .nav-foodnetwork .nav-utility a:hover {
   color: var(--fn-red);
   text-decoration: none;
-}
-
-body.foodnetwork .nav-foodnetwork .nav-utility a {
-  color: var(--fn-grey);
-  font-size: var(--body-font-size-xs);
 }
 
 /* ===== Food Network footer ===== */
@@ -243,10 +243,12 @@ body.foodnetwork footer .footer ul {
   list-style: none;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 body.foodnetwork footer .footer a:any-link {
   color: #fff;
 }
 
+/* stylelint-disable-next-line no-descending-specificity */
 body.foodnetwork footer .footer a:hover {
   color: var(--fn-red);
   text-decoration: underline;
