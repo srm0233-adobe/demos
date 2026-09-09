@@ -3,7 +3,9 @@ version: 1
 indices:
   guidelines:
     include:
-      - '/att-brand-center/guidelines/**'
+      - '/att-brand-center/guidelines/*'
+    exclude:
+      - '/att-brand-center/guidelines/*/**'
     target: /att-brand-center/guidelines/query-index.json
     properties:
       title:
@@ -20,4 +22,31 @@ indices:
         value: attribute(el, 'content')
       description:
         select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      navOrder:
+        select: head > meta[name="nav-order"]
+        value: attribute(el, 'content')
+
+  brand-identity:
+    include:
+      - '/att-brand-center/guidelines/brand-guidelines/**'
+    target: /att-brand-center/guidelines/brand-guidelines/query-index.json
+    properties:
+      title:
+        select: head > meta[property="og:title"]
+        value: attribute(el, 'content')
+      navTitle:
+        select: head > meta[name="nav-title"]
+        value: attribute(el, 'content')
+      category:
+        select: head > meta[name="category"]
+        value: attribute(el, 'content')
+      parent:
+        select: head > meta[name="parent"]
+        value: attribute(el, 'content')
+      description:
+        select: head > meta[name="description"]
+        value: attribute(el, 'content')
+      navOrder:
+        select: head > meta[name="nav-order"]
         value: attribute(el, 'content')

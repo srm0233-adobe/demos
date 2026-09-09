@@ -1,0 +1,78 @@
+/* page-nav — previous/next pager with circular arrow */
+.page-nav {
+  border-top: 1px solid #e5e5e5;
+  margin-top: 40px;
+  padding-top: 24px;
+}
+
+.page-nav .page-nav-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 24px;
+}
+
+/* a lone NEXT item pushes to the right */
+.page-nav .page-nav-wrap > .page-nav-next:only-child {
+  margin-left: auto;
+}
+
+.page-nav .page-nav-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  text-decoration: none;
+}
+
+.page-nav .page-nav-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.page-nav .page-nav-prev .page-nav-text {
+  text-align: left;
+}
+
+.page-nav .page-nav-next .page-nav-text {
+  text-align: right;
+}
+
+.page-nav .page-nav-caption {
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #6c6c6c;
+}
+
+.page-nav .page-nav-label {
+  color: var(--att-blue-dark);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* circular arrow button */
+.page-nav .page-nav-arrow {
+  position: relative;
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: var(--att-blue-dark);
+}
+
+.page-nav .page-nav-arrow::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border: 2px solid #fff;
+  border-top: 0;
+  border-left: 0;
+  transform: translate(-70%, -50%) rotate(-45deg);
+}
+
+.page-nav .page-nav-prev .page-nav-arrow::after {
+  transform: translate(-30%, -50%) rotate(135deg);
+}

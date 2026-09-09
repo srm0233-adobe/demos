@@ -41,6 +41,21 @@ const SECTION_ORDER = {
     'FirstNet guidelines',
     'Additional resources',
   ],
+  '/att-brand-center/guidelines/brand-guidelines': [
+    'Overview',
+    'Brand voice',
+    'Logo',
+    'Color',
+    'Curvature',
+    'Typography',
+    'Photography',
+    'Pattern',
+    'Illustration',
+    'Iconography',
+    'Sonic logo',
+    'Music',
+    'Connect with us',
+  ],
 };
 
 /** The section folder path for the current (or given) page path. */
@@ -63,8 +78,26 @@ async function fetchIndex(sectionPath) {
 
 const labelOf = (e) => (e.navTitle || e.title || '').trim();
 
-/** Order entries by the section's fixed list, then index order / alphabetical. */
+/**
+ * Order entries. Preference:
+ *   1. numeric nav-order metadata (navOrder) when any page defines it,
+ *   2. else the section's fixed label list (SECTION_ORDER),
+ *   3. else index order, with any unlisted labels appended alphabetically.
+ */
 function orderEntries(entries, order) {
+  // 1. nav-order metadata wins when present on any page.
+  const hasNavOrder = entries.some((e) => e.navOrder !== undefined && e.navOrder !== '');
+  if (hasNavOrder) {
+    return [...entries].sort((a, b) => {
+      const ao = Number.parseInt(a.navOrder, 10);
+      const bo = Number.parseInt(b.navOrder, 10);
+      const av = Number.isNaN(ao) ? Infinity : ao;
+      const bv = Number.isNaN(bo) ? Infinity : bo;
+      if (av !== bv) return av - bv;
+      return labelOf(a).localeCompare(labelOf(b));
+    });
+  }
+  // 2/3. fixed label list, else index order.
   if (!order || !order.length) return entries;
   const known = [];
   order.forEach((label) => {
