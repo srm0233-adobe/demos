@@ -1,0 +1,40 @@
+/* related-items — heading + horizontal thumbnail strip */
+.related-items-heading {
+  margin: 0 0 12px;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+.related-items-strip {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 8px;
+  display: flex;
+  gap: 16px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+
+.related-items-strip::-webkit-scrollbar {
+  height: 6px;
+}
+
+.related-items-strip .related-items-thumb {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+.related-items-strip .related-items-thumb,
+.related-items-strip .related-items-thumb a {
+  line-height: 0;
+}
+
+.related-items-strip .related-items-thumb picture,
+.related-items-strip .related-items-thumb img {
+  width: 180px;
+  height: 108px;
+  object-fit: cover;
+  border-radius: 2px;
+  display: block;
+}

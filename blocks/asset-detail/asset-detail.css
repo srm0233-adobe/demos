@@ -1,0 +1,129 @@
+/* asset-detail — preview image (left) + info panel (right) */
+.asset-detail {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 32px;
+}
+
+.asset-detail-media picture,
+.asset-detail-media img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 2px;
+}
+
+/* tabs */
+.asset-detail-tabs {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 16px;
+}
+
+.asset-detail-tabs .asset-detail-tab {
+  color: var(--att-blue);
+  font-size: 15px;
+  text-decoration: none;
+}
+
+.asset-detail-tabs .asset-detail-tab.active {
+  color: var(--att-blue);
+  border-bottom: 2px solid var(--att-blue);
+  padding-bottom: 4px;
+}
+
+.asset-detail-info p {
+  margin: 0 0 16px;
+  font-size: 14px;
+  line-height: 1.5;
+  color: var(--text-color);
+}
+
+.asset-detail-description strong,
+.asset-detail-keywords strong {
+  font-weight: 700;
+}
+
+/* expiration */
+.asset-detail-expiration {
+  margin: 24px 0;
+}
+
+.asset-detail-expiration-date {
+  display: block;
+  color: var(--att-blue);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.asset-detail-expiration-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* photography type / license row */
+.asset-detail-meta {
+  display: flex;
+  gap: 48px;
+  margin: 24px 0;
+}
+
+.asset-detail-meta-value {
+  display: block;
+  color: var(--att-blue);
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.asset-detail-meta-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+/* CTA buttons */
+.asset-detail-cta {
+  display: flex;
+  gap: 16px;
+  margin: 24px 0;
+}
+
+.asset-detail-cta .asset-detail-button {
+  display: inline-block;
+  padding: 12px 32px;
+  background-color: var(--att-blue-dark);
+  color: #fff;
+  font-weight: 500;
+  border-radius: 2px;
+  text-decoration: none;
+}
+
+.asset-detail-cta .asset-detail-button:hover {
+  background-color: var(--att-blue-darker);
+}
+
+/* tags */
+.asset-detail-tags {
+  font-size: 14px;
+}
+
+.asset-detail-tags a:any-link {
+  color: var(--att-blue);
+  text-decoration: none;
+}
+
+.asset-detail-tags a:hover {
+  text-decoration: underline;
+}
+
+.asset-detail-tags .asset-detail-see-all {
+  color: var(--text-color);
+}
+
+@media (width >= 900px) {
+  .asset-detail {
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+}

@@ -1,0 +1,68 @@
+/* link-row — bordered action rows: icon + linked label + chevron */
+.link-row-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.link-row .link-row-item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 4px;
+  text-decoration: none;
+  background: #fff;
+  min-height: 72px;
+  overflow: hidden;
+}
+
+.link-row .link-row-item:hover {
+  border-color: var(--att-blue);
+}
+
+/* leading icon in a grey tile */
+.link-row .link-row-icon {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 72px;
+  align-self: stretch;
+  background: var(--light-color);
+  color: var(--att-blue-dark);
+}
+
+.link-row .link-row-icon .icon,
+.link-row .link-row-icon img {
+  width: 28px;
+  height: 28px;
+}
+
+.link-row .link-row-label {
+  flex: 1 1 auto;
+  color: var(--att-blue-dark);
+  font-weight: 700;
+  font-size: 16px;
+}
+
+/* trailing chevron */
+.link-row .link-row-chevron {
+  flex: 0 0 auto;
+  position: relative;
+  width: 44px;
+  align-self: stretch;
+}
+
+.link-row .link-row-chevron::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 9px;
+  height: 9px;
+  border: 2px solid var(--text-color);
+  border-top: 0;
+  border-left: 0;
+  transform: translate(-70%, -50%) rotate(-45deg);
+}

@@ -366,3 +366,37 @@ main .sidenav-content .default-content-wrapper h3 {
   font-weight: 500;
   font-size: 20px;
 }
+
+/* ===== Assets Detail page ===== */
+
+/* grey top band holding the asset-detail + related-items blocks */
+main .section.detail-top {
+  background-color: var(--light-color);
+  margin: 0;
+  padding: 40px 0 56px;
+}
+
+/* white "Key details" area */
+main .section.detail-body h2 {
+  color: var(--att-blue-dark);
+  font-weight: 300;
+  font-size: 34px;
+  margin-top: 0;
+}
+
+main .section.detail-body h3 {
+  color: var(--text-color);
+  font-weight: 700;
+  font-size: 22px;
+  margin: 2em 0 1em;
+}
+
+main .section.detail-body ol {
+  margin: 0 0 8px;
+  padding-left: 24px;
+}
+
+main .section.detail-body ol li {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
