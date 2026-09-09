@@ -1,0 +1,28 @@
+{
+  "variantName": "spacer",
+  "baseBlock": "spacer",
+  "version": "1.0.0",
+  "created": "2026-09-09T00:00:00.000Z",
+  "sourceContext": {
+    "originPage": "AT&T Brand Center — reusable utility block"
+  },
+  "visualCharacteristics": {
+    "purpose": "vertical-spacing"
+  },
+  "contentPattern": {
+    "structure": "single optional cell: size keyword (small|medium|large|xlarge) or a length (e.g. 120px)",
+    "buttonCount": 0,
+    "imageCount": 0,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "adding empty vertical space above or below content within a section",
+      "separating stacked blocks without a section break"
+    ],
+    "notSuitableFor": [
+      "background/color bands (use a section style)",
+      "horizontal spacing"
+    ]
+  }
+}

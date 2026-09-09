@@ -1,0 +1,16 @@
+/* spacer — empty vertical space; height set by size class or inline length */
+.spacer {
+  width: 100%;
+}
+
+.spacer.spacer-small { height: 16px; }
+.spacer.spacer-medium { height: 32px; }
+.spacer.spacer-large { height: 64px; }
+.spacer.spacer-xlarge { height: 96px; }
+
+@media (width >= 900px) {
+  .spacer.spacer-small { height: 24px; }
+  .spacer.spacer-medium { height: 48px; }
+  .spacer.spacer-large { height: 96px; }
+  .spacer.spacer-xlarge { height: 144px; }
+}
