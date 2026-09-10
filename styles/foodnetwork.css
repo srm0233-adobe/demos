@@ -31,6 +31,10 @@ body.foodnetwork {
   --body-font-family: "Helvetica Neue", helvetica, arial, sans-serif;
   --heading-font-family: georgia, "Times New Roman", times, serif;
   --heading-font-weight: 700;
+
+  /* action icons (masked SVGs; color comes from currentcolor) */
+  --fn-icon-bookmark: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M6 2h12a2 2 0 0 1 2 2v18l-8-4-8 4V4a2 2 0 0 1 2-2z"/></svg>');
+  --fn-icon-share: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.9a3 3 0 0 0 0-2.6l6.7-3.9A3 3 0 1 0 15 3a3 3 0 0 0 .1.8L8.4 7.7a3 3 0 1 0 0 8.6l6.7 3.9a3 3 0 1 0 2.9-2.2z"/></svg>');
 }
 
 /* ===== Global element theming (scoped to Food Network pages) ===== */
@@ -81,6 +85,33 @@ body.foodnetwork .recipe-hero .recipe-hero-rating {
   color: var(--fn-red);
   font-weight: 700;
   font-size: var(--body-font-size-s);
+}
+
+/* Share / Save actions — outlined red pills */
+body.foodnetwork .recipe-hero .recipe-hero-action {
+  border: 2px solid var(--fn-red);
+  border-radius: 999px;
+  padding: 8px 18px;
+  background: none;
+  color: var(--fn-red);
+  font-family: var(--body-font-family);
+  font-weight: 700;
+  font-size: var(--body-font-size-xs);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+body.foodnetwork .recipe-hero .recipe-hero-action:hover {
+  background-color: var(--fn-red);
+  color: #fff;
+}
+
+/* Saved / copied states — solid red pill */
+body.foodnetwork .recipe-hero .recipe-hero-action.is-saved,
+body.foodnetwork .recipe-hero .recipe-hero-action.is-copied {
+  background-color: var(--fn-red);
+  color: #fff;
 }
 
 /* WATCH play overlay — white pill on the photo */

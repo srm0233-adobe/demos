@@ -98,6 +98,43 @@
   gap: 8px;
 }
 
+/* Share / Save action row */
+.recipe-hero .recipe-hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.recipe-hero .recipe-hero-action {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0;
+  cursor: pointer;
+}
+
+.recipe-hero .recipe-hero-action-icon {
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+}
+
+/* Save icon — bookmark outline (filled when saved) */
+.recipe-hero .recipe-hero-save .recipe-hero-action-icon {
+  mask: var(--fn-icon-bookmark) center / contain no-repeat;
+  background-color: currentcolor;
+}
+
+/* Share icon — three connected nodes */
+.recipe-hero .recipe-hero-share .recipe-hero-action-icon {
+  mask: var(--fn-icon-share) center / contain no-repeat;
+  background-color: currentcolor;
+}
+
 @media (width >= 900px) {
   .recipe-hero {
     gap: 32px;

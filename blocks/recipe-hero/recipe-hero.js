@@ -98,6 +98,66 @@ export default function decorate(block) {
     });
   });
 
+  // --- Share / Save actions ------------------------------------------------
+  const actions = document.createElement('div');
+  actions.className = 'recipe-hero-actions';
+
+  const title = content.querySelector('h1, h2')?.textContent?.trim() || document.title;
+
+  const saveBtn = document.createElement('button');
+  saveBtn.type = 'button';
+  saveBtn.className = 'recipe-hero-action recipe-hero-save';
+  saveBtn.append(
+    Object.assign(document.createElement('span'), { className: 'recipe-hero-action-icon', ariaHidden: 'true' }),
+    Object.assign(document.createElement('span'), { className: 'recipe-hero-action-label', textContent: 'Save Recipe' }),
+  );
+
+  const shareBtn = document.createElement('button');
+  shareBtn.type = 'button';
+  shareBtn.className = 'recipe-hero-action recipe-hero-share';
+  shareBtn.append(
+    Object.assign(document.createElement('span'), { className: 'recipe-hero-action-icon', ariaHidden: 'true' }),
+    Object.assign(document.createElement('span'), { className: 'recipe-hero-action-label', textContent: 'Share' }),
+  );
+
+  // Save: toggle a persisted flag for this page and reflect it in the label.
+  const saveKey = `fn-saved:${window.location.pathname}`;
+  const reflectSaved = () => {
+    const saved = localStorage.getItem(saveKey) === '1';
+    saveBtn.classList.toggle('is-saved', saved);
+    saveBtn.setAttribute('aria-pressed', String(saved));
+    saveBtn.querySelector('.recipe-hero-action-label').textContent = saved ? 'Saved' : 'Save Recipe';
+  };
+  try { reflectSaved(); } catch (e) { /* localStorage unavailable */ }
+  saveBtn.addEventListener('click', () => {
+    try {
+      const saved = localStorage.getItem(saveKey) === '1';
+      if (saved) localStorage.removeItem(saveKey);
+      else localStorage.setItem(saveKey, '1');
+      reflectSaved();
+    } catch (e) { /* ignore */ }
+  });
+
+  // Share: use the Web Share API when available, else copy the URL.
+  shareBtn.addEventListener('click', async () => {
+    const url = window.location.href;
+    try {
+      if (navigator.share) {
+        await navigator.share({ title, url });
+        return;
+      }
+      await navigator.clipboard.writeText(url);
+      const label = shareBtn.querySelector('.recipe-hero-action-label');
+      const original = label.textContent;
+      label.textContent = 'Link copied';
+      shareBtn.classList.add('is-copied');
+      setTimeout(() => { label.textContent = original; shareBtn.classList.remove('is-copied'); }, 2000);
+    } catch (e) { /* user cancelled or API unavailable */ }
+  });
+
+  actions.append(saveBtn, shareBtn);
+  content.append(actions);
+
   block.textContent = '';
   if (media.children.length) block.append(media);
   block.append(content);
