@@ -203,40 +203,69 @@ var CustomImportScript = (() => {
 
   // tools/importer/parsers/cards-tiles.js
   function parse6(element, { document: document2 }) {
-    const container = element.querySelector(".o-Recommendations__TileContainer") || element;
-    const tiles = container.querySelectorAll(":scope > .o-Recommendations__m-MediaBlock, :scope > .m-MediaBlock");
     const cells = [];
-    tiles.forEach((tile) => {
-      const img = tile.querySelector('.m-MediaBlock__a-Image, img[class*="a-Image"], img');
-      const headline = tile.querySelector(".m-MediaBlock__a-Headline");
-      const titleLink = headline ? headline.querySelector("a[href]") : tile.querySelector("a[href]");
-      const titleText = (headline ? headline.textContent : titleLink ? titleLink.textContent : "").trim();
-      if (!img && !titleText) return;
-      const body = [];
-      if (titleLink && titleText) {
-        const a = document2.createElement("a");
-        a.href = titleLink.getAttribute("href");
-        a.textContent = titleText;
-        body.push(a);
-      } else if (titleText) {
-        const p = document2.createElement("p");
-        p.textContent = titleText;
-        body.push(p);
-      }
-      const stars = tile.querySelector('.rating-stars[title], [class*="rating-stars"][title]');
-      const m = ((stars == null ? void 0 : stars.getAttribute("title")) || "").match(/([\d.]+)\s*of\s*([\d.]+)/i);
-      if (m) {
-        const rp = document2.createElement("p");
-        rp.textContent = `${m[1]} / ${m[2]}`;
-        body.push(rp);
-      }
-      cells.push([img || "", body]);
-    });
+    const recContainer = element.querySelector(".o-Recommendations__TileContainer");
+    const recTiles = element.querySelectorAll(
+      ".o-Recommendations__m-MediaBlock, .o-Recommendations__TileContainer .m-MediaBlock"
+    );
+    const promoCards = element.querySelectorAll(".m-Card");
+    if (promoCards.length) {
+      promoCards.forEach((card) => {
+        const img = card.querySelector('.m-Card__m-MediaWrap img, img[class*="a-Image"], img');
+        const headline = card.querySelector(".m-Card__a-Headline");
+        const titleLink = headline ? headline.querySelector("a[href]") : card.querySelector(".m-Card__m-TextWrap a[href]");
+        const titleText = (headline ? headline.textContent : titleLink ? titleLink.textContent : "").trim();
+        if (!img && !titleText) return;
+        const body = [];
+        if (titleLink && titleText) {
+          const a = document2.createElement("a");
+          a.href = titleLink.getAttribute("href");
+          a.textContent = titleText;
+          body.push(a);
+        } else if (titleText) {
+          const p = document2.createElement("p");
+          p.textContent = titleText;
+          body.push(p);
+        }
+        cells.push([img || "", body.length ? body : ""]);
+      });
+    } else {
+      const container = recContainer || element;
+      let tiles = recTiles.length ? recTiles : container.querySelectorAll(":scope > .o-Recommendations__m-MediaBlock, :scope > .m-MediaBlock");
+      tiles.forEach((tile) => {
+        const img = tile.querySelector('.m-MediaBlock__a-Image, img[class*="a-Image"], img');
+        const headline = tile.querySelector(".m-MediaBlock__a-Headline");
+        const titleLink = headline ? headline.querySelector("a[href]") : tile.querySelector("a[href]");
+        const titleText = (headline ? headline.textContent : titleLink ? titleLink.textContent : "").trim();
+        if (!img && !titleText) return;
+        const body = [];
+        if (titleLink && titleText) {
+          const a = document2.createElement("a");
+          a.href = titleLink.getAttribute("href");
+          a.textContent = titleText;
+          body.push(a);
+        } else if (titleText) {
+          const p = document2.createElement("p");
+          p.textContent = titleText;
+          body.push(p);
+        }
+        const stars = tile.querySelector('.rating-stars[title], [class*="rating-stars"][title]');
+        const m = ((stars == null ? void 0 : stars.getAttribute("title")) || "").match(/([\d.]+)\s*of\s*([\d.]+)/i);
+        if (m) {
+          const rp = document2.createElement("p");
+          rp.textContent = `${m[1]} / ${m[2]}`;
+          body.push(rp);
+        }
+        cells.push([img || "", body.length ? body : ""]);
+      });
+    }
     if (cells.length === 0) {
       element.replaceWith(...element.childNodes);
       return;
     }
-    const headingSource = element.querySelector(".o-Recommendations__a-HeadlineText, .o-Recommendations__a-Headline, header h2, h2");
+    const headingSource = element.querySelector(
+      ".o-Recommendations__a-HeadlineText, .o-Recommendations__a-Headline, .o-FullWidthPromo__a-HeadlineText, .o-FullWidthPromo__a-Headline, header h2, h2"
+    );
     const block = WebImporter.Blocks.createBlock(document2, { name: "cards-tiles", cells });
     if (headingSource && headingSource.textContent.trim()) {
       const h2 = document2.createElement("h2");
@@ -481,6 +510,24 @@ var CustomImportScript = (() => {
       }
     });
   }
+  var DA_MEDIA_BASE = "https://content.da.live/srm0233-adobe/demos/foodnetwork/media";
+  function mediaSlug(u) {
+    const m = u.match(/([A-Za-z0-9_.-]+)\.(?:jpe?g|png|webp)\.rend\.hgtvcom\.(\d+)\.(\d+)/i);
+    if (m) return `${m[1].toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-${m[2]}x${m[3]}.png`;
+    const a = u.match(/talent\/[^/]+\/([A-Za-z0-9_-]+)\.jpe?g/i);
+    if (a) return `${a[1].toLowerCase().replace(/_/g, "-")}.png`;
+    return null;
+  }
+  function localizeImages(main) {
+    main.querySelectorAll("img, source").forEach((el) => {
+      ["src", "srcset"].forEach((attr) => {
+        const val = el.getAttribute(attr);
+        if (!val || !/sndimg\.com/i.test(val)) return;
+        const slug = mediaSlug(val);
+        if (slug) el.setAttribute(attr, `${DA_MEDIA_BASE}/${slug}`);
+      });
+    });
+  }
   function findBlocksOnPage(document2, template) {
     const pageBlocks = [];
     template.blocks.forEach((blockDef) => {
@@ -533,6 +580,7 @@ var CustomImportScript = (() => {
       WebImporter.rules.createMetadata(main, document2);
       WebImporter.rules.transformBackgroundImages(main, document2);
       WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
+      localizeImages(main);
       const path = WebImporter.FileUtils.sanitizePath("/foodnetwork/apple-cider-chicken");
       return [{
         element: main,

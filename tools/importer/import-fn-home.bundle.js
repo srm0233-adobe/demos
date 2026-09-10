@@ -519,6 +519,24 @@ var CustomImportScript = (() => {
     transform,
     ...PAGE_TEMPLATE.sections && PAGE_TEMPLATE.sections.length > 1 ? [transform2] : []
   ];
+  var DA_MEDIA_BASE = "https://content.da.live/srm0233-adobe/demos/foodnetwork/media";
+  function mediaSlug(u) {
+    const m = u.match(/([A-Za-z0-9_.-]+)\.(?:jpe?g|png|webp)\.rend\.hgtvcom\.(\d+)\.(\d+)/i);
+    if (m) return `${m[1].toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "")}-${m[2]}x${m[3]}.png`;
+    const a = u.match(/talent\/[^/]+\/([A-Za-z0-9_-]+)\.jpe?g/i);
+    if (a) return `${a[1].toLowerCase().replace(/_/g, "-")}.png`;
+    return null;
+  }
+  function localizeImages(main) {
+    main.querySelectorAll("img, source").forEach((el) => {
+      ["src", "srcset"].forEach((attr) => {
+        const val = el.getAttribute(attr);
+        if (!val || !/sndimg\.com/i.test(val)) return;
+        const slug = mediaSlug(val);
+        if (slug) el.setAttribute(attr, `${DA_MEDIA_BASE}/${slug}`);
+      });
+    });
+  }
   function executeTransformers(hookName, element, payload) {
     const enhancedPayload = __spreadProps(__spreadValues({}, payload), { template: PAGE_TEMPLATE });
     transformers.forEach((transformerFn) => {
@@ -581,6 +599,7 @@ var CustomImportScript = (() => {
       WebImporter.rules.createMetadata(main, document2);
       WebImporter.rules.transformBackgroundImages(main, document2);
       WebImporter.rules.adjustImageUrls(main, url, params.originalURL);
+      localizeImages(main);
       const path = WebImporter.FileUtils.sanitizePath("/foodnetwork/index");
       return [{
         element: main,
