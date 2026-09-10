@@ -207,7 +207,7 @@ body.foodnetwork .nav-foodnetwork {
 body.foodnetwork .nav-foodnetwork .nav-bar {
   display: flex;
   align-items: center;
-  gap: 16px;
+  gap: 14px;
   max-width: var(--content-max-width, 1200px);
   margin: 0 auto;
   padding: 12px 24px;
@@ -261,12 +261,12 @@ body.foodnetwork .nav-foodnetwork .nav-logo-network {
   margin-top: 1px;
 }
 
-/* Primary links */
+/* Primary links — single row on desktop; the mobile media query below adds
+   wrapping/stacking behind the hamburger. */
 body.foodnetwork .nav-foodnetwork .nav-links {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 22px;
+  gap: 18px;
   margin: 0;
   padding: 0;
   list-style: none;
@@ -288,7 +288,9 @@ body.foodnetwork .nav-foodnetwork .nav-links a:hover {
 body.foodnetwork .nav-foodnetwork .nav-search {
   display: flex;
   align-items: center;
-  flex: 0 1 260px;
+  flex: 1 1 160px;
+  max-width: 260px;
+  min-width: 120px;
   margin: 0 0 0 auto;
   border: 1px solid var(--fn-rule);
   border-radius: 999px;
