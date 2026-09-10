@@ -47,11 +47,27 @@ function isFoodNetwork() {
   return window.location.pathname.replace('/content', '').startsWith('/foodnetwork');
 }
 
-/** Builds a masked-glyph icon span for the Food Network header. */
+// Inline SVG glyphs for the Food Network header. Explicit #1a1a1a stroke/fill
+// so they render charcoal regardless of the surrounding cascade (a bare
+// currentcolor/mask approach was inheriting the global link/button colors).
+const FN_ICON_SVG = {
+  menu: '<svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>',
+  search: '<svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.3-4.3"/></svg>',
+  bookmark: '<svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linejoin="round" aria-hidden="true"><path d="M6 3h12a1 1 0 0 1 1 1v17l-7-4-7 4V4a1 1 0 0 1 1-1z"/></svg>',
+  cart: '<svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4h2l2.4 12.4a1 1 0 0 0 1 .8h9.4a1 1 0 0 0 1-.8L21 8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></svg>',
+  user: '<svg viewBox="0 0 24 24" fill="none" stroke="#1a1a1a" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path stroke-linecap="round" d="M4 21a8 8 0 0 1 16 0"/></svg>',
+};
+
+// Food Network round logo badge: red circle with a white "food" script + a
+// small "network" wordmark beneath. Drawn as SVG so it's crisp and self-colored.
+const FN_LOGO_SVG = '<svg viewBox="0 0 100 100" role="img" aria-label="Food Network"><circle cx="50" cy="50" r="50" fill="#c8102e"/><text x="50" y="52" text-anchor="middle" font-family="Georgia, \'Times New Roman\', serif" font-style="italic" font-weight="700" font-size="34" fill="#fff">food</text><text x="50" y="70" text-anchor="middle" font-family="Helvetica, Arial, sans-serif" font-weight="700" font-size="10" letter-spacing="1.5" fill="#fff">NETWORK</text></svg>';
+
+/** Builds an inline-SVG icon span for the Food Network header. */
 function fnIcon(name) {
   const i = document.createElement('span');
   i.className = `nav-icon nav-icon-${name}`;
   i.setAttribute('aria-hidden', 'true');
+  i.innerHTML = FN_ICON_SVG[name] || '';
   return i;
 }
 
@@ -98,10 +114,7 @@ async function decorateFoodNetwork(block) {
   brandLink.setAttribute('aria-label', 'Food Network');
   const logo = document.createElement('span');
   logo.className = 'nav-logo';
-  logo.append(
-    Object.assign(document.createElement('span'), { className: 'nav-logo-food', textContent: 'food' }),
-    Object.assign(document.createElement('span'), { className: 'nav-logo-network', textContent: 'network' }),
-  );
+  logo.innerHTML = FN_LOGO_SVG;
   brandLink.append(logo);
   brand.append(brandLink);
 
