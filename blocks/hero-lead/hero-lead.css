@@ -6,20 +6,14 @@
   gap: 24px;
 }
 
-/* --- Full-bleed lead ---
+/* --- Page-width lead ---
    When the lead has no companion rail (block gets .hero-lead-overlay and its
-   section gets .hero-lead-full, both set in decorate()), it renders as a
-   full-width banner with the text overlaid as a box in the bottom-left corner.
-   Break the feature out of the section's centered content column so the image
-   spans edge to edge. */
-main .section.hero-lead-full {
-  margin: 0;
-}
-
-main .section.hero-lead-full > div {
-  max-width: none;
-  padding: 0;
-}
+   section gets .hero-lead-full, both set in decorate()), it renders as a wide
+   banner with the text overlaid as a box in the bottom-left corner. The banner
+   is constrained to the page content width (aligned with the header/nav), not
+   full-bleed to the viewport — it uses the standard centered content column,
+   so no size override is needed here; the section keeps its default
+   max-width/padding. */
 
 /* --- Main feature --- */
 .hero-lead .hero-lead-feature .hero-lead-image {
