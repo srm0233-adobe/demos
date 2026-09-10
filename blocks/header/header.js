@@ -58,10 +58,16 @@ async function decorateFoodNetwork(block) {
   if (!fragment) fragment = await loadFragment('/foodnetwork/nav');
   if (!fragment) return;
 
-  const sections = [...fragment.children];
-  const logoLink = sections[0]?.querySelector('a');
-  const primaryList = sections[1]?.querySelector('ul');
-  const utilityList = sections[2]?.querySelector('ul');
+  // Parse robustly regardless of how the fragment is sectioned — Document
+  // Authoring can collapse the three authored blocks (logo / primary / utility)
+  // into a single <div>, so select by role within the whole fragment rather
+  // than by section index: the brand is the first standalone link (the one not
+  // inside a <ul>), the primary nav is the first <ul>, and any second <ul> is
+  // the utility row.
+  const lists = [...fragment.querySelectorAll('ul')];
+  const primaryList = lists[0] || null;
+  const utilityList = lists[1] || null;
+  const logoLink = [...fragment.querySelectorAll('a')].find((a) => !a.closest('ul')) || null;
 
   block.textContent = '';
   const nav = document.createElement('nav');
