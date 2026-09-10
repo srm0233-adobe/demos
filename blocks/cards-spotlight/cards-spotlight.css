@@ -1,0 +1,46 @@
+/* Cards Spotlight — single large image + linked headline. Structural only. */
+
+.cards-spotlight {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.cards-spotlight .cards-spotlight-image {
+  line-height: 0;
+}
+
+.cards-spotlight .cards-spotlight-image picture,
+.cards-spotlight .cards-spotlight-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.cards-spotlight .cards-spotlight-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cards-spotlight .cards-spotlight-body > * {
+  margin: 0;
+}
+
+/* On wider screens the image sits beside the headline. */
+@media (width >= 900px) {
+  .cards-spotlight {
+    flex-direction: row;
+    align-items: center;
+    gap: 32px;
+  }
+
+  .cards-spotlight .cards-spotlight-image {
+    flex: 1 1 60%;
+  }
+
+  .cards-spotlight .cards-spotlight-body {
+    flex: 1 1 40%;
+  }
+}

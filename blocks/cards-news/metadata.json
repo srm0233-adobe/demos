@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-news",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-10T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.foodnetwork.com/",
+    "originPage": "Food Network homepage",
+    "blockPosition": "whats-new-list"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "news-list",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "one row per story: image + (category eyebrow + linked headline + description); renders as a vertical story list",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "hasDescription": true
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "news/article feed: image + category tag + headline + summary",
+      "'What's New' style vertical story lists"
+    ],
+    "notSuitableFor": [
+      "image-tile grids with no description (use cards-tiles)",
+      "people profiles (use cards-chefs)"
+    ]
+  },
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["cards-news"],
+  "usage": {
+    "pagesUsing": ["/foodnetwork/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-10T00:00:00.000Z"
+  }
+}

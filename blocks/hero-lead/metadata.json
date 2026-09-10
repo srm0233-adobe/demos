@@ -1,0 +1,41 @@
+{
+  "variantName": "hero-lead",
+  "baseBlock": "hero",
+  "version": "1.0.0",
+  "created": "2026-09-10T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.foodnetwork.com/",
+    "originPage": "Food Network homepage",
+    "blockPosition": "page-lead"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "editorial-lead",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "row 1 is the main feature (large image + linked headline); optional following rows are compact companion rail items (thumbnail + linked title)",
+    "buttonCount": 0,
+    "imageCount": 2,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "light editorial page lead: big feature + companion shows/schedule rail",
+      "landing-page hero with a main story and a secondary link list"
+    ],
+    "notSuitableFor": [
+      "dark full-bleed CTA banners (use hero-banner)",
+      "recipe detail leads (use recipe-hero)"
+    ]
+  },
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["hero-lead"],
+  "usage": {
+    "pagesUsing": ["/foodnetwork/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-10T00:00:00.000Z"
+  }
+}

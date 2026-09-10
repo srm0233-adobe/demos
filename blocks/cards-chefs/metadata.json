@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-chefs",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-10T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.foodnetwork.com/",
+    "originPage": "Food Network homepage",
+    "blockPosition": "chefs-strip"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "compact",
+    "purpose": "people-profiles",
+    "imagePattern": "circle"
+  },
+  "contentPattern": {
+    "structure": "one row per person: circular portrait + linked name + role; renders as a responsive profile grid",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "chef/host/author profile strips with circular portraits",
+      "team or people grids: portrait + name + role"
+    ],
+    "notSuitableFor": [
+      "rectangular image tiles (use cards-tiles)",
+      "story cards with descriptions (use cards-news)"
+    ]
+  },
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["cards-chefs"],
+  "usage": {
+    "pagesUsing": ["/foodnetwork/index"],
+    "reuseCount": 1,
+    "lastUsed": "2026-09-10T00:00:00.000Z"
+  }
+}

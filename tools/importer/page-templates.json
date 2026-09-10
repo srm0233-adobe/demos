@@ -9,9 +9,203 @@
         "https://www.foodnetwork.com/"
       ],
       "representativeUrl": "https://www.foodnetwork.com/",
-      "description": "To be named in naming step",
-      "blocks": [],
-      "urlPattern": "/"
+      "description": "Food Network editorial homepage: lead feature, recipe/show card grids, spotlights, chefs strip, news list, video, magazine promo.",
+      "blocks": [
+        {
+          "name": "hero-lead",
+          "instances": [
+            "#site > div.full-width > div.main.parsys > div.superLeadHero.section .o-SuperLeadHero"
+          ]
+        },
+        {
+          "name": "cards-tiles",
+          "instances": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(2) .o-FullWidthPromo",
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(3) .o-FullWidthPromo",
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(5) .o-FullWidthPromo",
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(8) .o-FullWidthPromo"
+          ]
+        },
+        {
+          "name": "cards-spotlight",
+          "instances": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(4) .o-FullWidthPromo",
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(6) .o-FullWidthPromo",
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(14) .o-FullWidthPromo"
+          ]
+        },
+        {
+          "name": "cards-chefs",
+          "instances": [
+            "#site > div.full-width > div.main.parsys > div.profilePromo.capsule.section:nth-of-type(9) .o-ProfilePromo"
+          ]
+        },
+        {
+          "name": "cards-news",
+          "instances": [
+            "#site > div.full-width > div.main.parsys > div.storyPromo.section .o-StoryPromo"
+          ]
+        },
+        {
+          "name": "video",
+          "instances": [
+            "#site > div.full-width > div.main.parsys > div.globalVideoPlayer.section .kdp"
+          ]
+        },
+        {
+          "name": "promo-banner",
+          "instances": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(15) .o-FullWidthPromo"
+          ]
+        }
+      ],
+      "urlPattern": "/",
+      "sections": [
+        {
+          "id": "rc4",
+          "name": "Lead Hero",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.superLeadHero.section"
+          ],
+          "style": null,
+          "blocks": [
+            "hero-lead"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc5",
+          "name": "Recipes and Shows You Do not Want to Miss",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(2)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-tiles"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc6",
+          "name": "Quick Bread Recipes",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(3)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-tiles"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc7",
+          "name": "More Cooking Inspiration",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(4)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-spotlight"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc8",
+          "name": "Shop With Us",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(5)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-tiles"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc9",
+          "name": "Trending Right Now",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(6)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-spotlight"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc11",
+          "name": "Inspired By Your Favorite Shows",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(8)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-tiles"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc12",
+          "name": "Meet Our Chefs and Hosts",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.profilePromo.capsule.section:nth-of-type(9)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-chefs"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc13",
+          "name": "What is New",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.storyPromo.section"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-news"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc14",
+          "name": "Featured Video",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.globalVideoPlayer.section"
+          ],
+          "style": null,
+          "blocks": [
+            "video"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc17",
+          "name": "What We are Cooking",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(14)"
+          ],
+          "style": null,
+          "blocks": [
+            "cards-spotlight"
+          ],
+          "defaultContent": []
+        },
+        {
+          "id": "rc18",
+          "name": "Food Network Magazine",
+          "selector": [
+            "#site > div.full-width > div.main.parsys > div.fullWidthPromo.section:nth-of-type(15)"
+          ],
+          "style": null,
+          "blocks": [
+            "promo-banner"
+          ],
+          "defaultContent": []
+        }
+      ]
     },
     {
       "name": "recipe",

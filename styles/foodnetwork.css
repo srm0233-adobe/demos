@@ -258,3 +258,91 @@ body.foodnetwork footer .footer > div:last-child p {
   color: #b3b3b3;
   font-size: var(--body-font-size-xs);
 }
+
+/* ===== Homepage blocks ===== */
+
+/* Section headings on the homepage (per-section H2s) share the recipe-page
+   treatment: serif, red underline. Already covered by the
+   .default-content-wrapper h2 rule above. */
+
+/* hero-lead — big serif feature headline + red rail titles */
+body.foodnetwork .hero-lead .hero-lead-feature .hero-lead-body a {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-l);
+  font-weight: 700;
+  color: var(--fn-charcoal);
+  line-height: 1.2;
+}
+
+body.foodnetwork .hero-lead .hero-lead-feature .hero-lead-body a:hover {
+  color: var(--fn-red);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+body.foodnetwork .hero-lead .hero-lead-rail-item .hero-lead-body a {
+  font-weight: 700;
+  color: var(--fn-charcoal);
+}
+
+body.foodnetwork .hero-lead .hero-lead-rail-item .hero-lead-body a:hover {
+  color: var(--fn-red);
+}
+
+/* cards-spotlight — serif headline beside the feature image */
+/* stylelint-disable-next-line no-descending-specificity */
+body.foodnetwork .cards-spotlight .cards-spotlight-body a {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-m);
+  font-weight: 700;
+  color: var(--fn-charcoal);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+body.foodnetwork .cards-spotlight .cards-spotlight-body a:hover {
+  color: var(--fn-red);
+}
+
+/* cards-chefs — name in red, role/bio in grey */
+body.foodnetwork .cards-chefs .cards-chefs-portrait {
+  border: 3px solid var(--fn-red);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+body.foodnetwork .cards-chefs .cards-chefs-body a {
+  font-weight: 700;
+  color: var(--fn-charcoal);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+body.foodnetwork .cards-chefs .cards-chefs-body a:hover {
+  color: var(--fn-red);
+}
+
+body.foodnetwork .cards-chefs .cards-chefs-body p:not(:first-child) {
+  color: var(--fn-grey);
+  font-size: var(--body-font-size-xs);
+  line-height: 1.4;
+}
+
+/* cards-news — red category eyebrow, serif headline, grey summary */
+body.foodnetwork .cards-news .cards-news-eyebrow {
+  color: var(--fn-red);
+  font-weight: 700;
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+body.foodnetwork .cards-news .cards-news-body a {
+  font-family: var(--heading-font-family);
+  font-size: var(--heading-font-size-s);
+  font-weight: 700;
+  color: var(--fn-charcoal);
+}
+
+/* stylelint-disable-next-line no-descending-specificity */
+body.foodnetwork .cards-news .cards-news-body a:hover {
+  color: var(--fn-red);
+}
+
+body.foodnetwork .cards-news .cards-news-item {
+  border-color: var(--fn-rule);
+}

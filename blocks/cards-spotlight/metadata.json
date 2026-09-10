@@ -1,0 +1,41 @@
+{
+  "variantName": "cards-spotlight",
+  "baseBlock": "cards",
+  "version": "1.0.0",
+  "created": "2026-09-10T00:00:00.000Z",
+  "sourceContext": {
+    "originUrl": "https://www.foodnetwork.com/",
+    "originPage": "Food Network homepage",
+    "blockPosition": "editorial-feature"
+  },
+  "visualCharacteristics": {
+    "colorScheme": "light",
+    "density": "spacious",
+    "purpose": "single-feature-spotlight",
+    "imagePattern": "large"
+  },
+  "contentPattern": {
+    "structure": "one row: a large image cell + a linked headline cell; no description, no CTA",
+    "buttonCount": 0,
+    "imageCount": 1,
+    "hasDescription": false
+  },
+  "reuseGuidance": {
+    "suitableFor": [
+      "single large editorial feature: one big image + linked headline",
+      "spotlight/trending features that promote one story or recipe"
+    ],
+    "notSuitableFor": [
+      "multi-item card grids (use cards-tiles)",
+      "cards with a description paragraph (use cards-news / cards-popular)"
+    ]
+  },
+  "canonicalModel": "standalone",
+  "options": [],
+  "memberVariantIds": ["cards-spotlight"],
+  "usage": {
+    "pagesUsing": ["/foodnetwork/index"],
+    "reuseCount": 3,
+    "lastUsed": "2026-09-10T00:00:00.000Z"
+  }
+}

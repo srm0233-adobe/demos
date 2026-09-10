@@ -1,0 +1,70 @@
+/* Hero Lead — light editorial lead feature + companion rail. Structural only. */
+
+.hero-lead {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 24px;
+}
+
+/* --- Main feature --- */
+.hero-lead .hero-lead-feature .hero-lead-image {
+  line-height: 0;
+}
+
+.hero-lead .hero-lead-feature .hero-lead-image picture,
+.hero-lead .hero-lead-feature .hero-lead-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.hero-lead .hero-lead-feature .hero-lead-body {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.hero-lead .hero-lead-feature .hero-lead-body > * {
+  margin: 0;
+}
+
+/* --- Companion rail --- */
+.hero-lead .hero-lead-rail {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-lead .hero-lead-rail-item {
+  display: grid;
+  grid-template-columns: 96px 1fr;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero-lead .hero-lead-rail-item .hero-lead-image {
+  line-height: 0;
+}
+
+.hero-lead .hero-lead-rail-item .hero-lead-image picture,
+.hero-lead .hero-lead-rail-item .hero-lead-image img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.hero-lead .hero-lead-rail-item .hero-lead-body > * {
+  margin: 0;
+}
+
+/* On wider screens the feature sits beside the rail. */
+@media (width >= 900px) {
+  .hero-lead {
+    grid-template-columns: 2fr 1fr;
+    align-items: start;
+    gap: 40px;
+  }
+}
