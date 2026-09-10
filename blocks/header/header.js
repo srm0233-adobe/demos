@@ -47,10 +47,18 @@ function isFoodNetwork() {
   return window.location.pathname.replace('/content', '').startsWith('/foodnetwork');
 }
 
+/** Builds a masked-glyph icon span for the Food Network header. */
+function fnIcon(name) {
+  const i = document.createElement('span');
+  i.className = `nav-icon nav-icon-${name}`;
+  i.setAttribute('aria-hidden', 'true');
+  return i;
+}
+
 /**
- * Loads and decorates the Food Network header: a wordmark on the left and a
- * single horizontal row of primary category links. Kept intentionally simple
- * (no megamenu / brand selector) to match the migrated recipe layout.
+ * Loads and decorates the Food Network header to match the reference site:
+ * hamburger + round logo badge on the left, primary category links, a search
+ * field, and bookmark / cart / account action icons on the right.
  * @param {Element} block The header block element
  */
 async function decorateFoodNetwork(block) {
@@ -59,15 +67,12 @@ async function decorateFoodNetwork(block) {
   if (!fragment) return;
 
   // Parse robustly regardless of how the fragment is sectioned — Document
-  // Authoring can collapse the three authored blocks (logo / primary / utility)
-  // into a single <div>, so select by role within the whole fragment rather
-  // than by section index: the brand is the first standalone link (the one not
-  // inside a <ul>), the primary nav is the first <ul>, and any second <ul> is
-  // the utility row.
-  const lists = [...fragment.querySelectorAll('ul')];
-  const primaryList = lists[0] || null;
-  const utilityList = lists[1] || null;
+  // Authoring can collapse the authored blocks (logo / primary / utility) into
+  // a single <div>, so select by role: brand = first standalone link (not in a
+  // <ul>), primary nav = first <ul>.
+  const primaryList = fragment.querySelector('ul');
   const logoLink = [...fragment.querySelectorAll('a')].find((a) => !a.closest('ul')) || null;
+  const homeHref = logoLink?.getAttribute('href') || '/foodnetwork/index';
 
   block.textContent = '';
   const nav = document.createElement('nav');
@@ -77,15 +82,30 @@ async function decorateFoodNetwork(block) {
   const bar = document.createElement('div');
   bar.className = 'nav-bar';
 
+  // --- Hamburger ----------------------------------------------------------
+  const hamburger = document.createElement('button');
+  hamburger.type = 'button';
+  hamburger.className = 'nav-hamburger';
+  hamburger.setAttribute('aria-label', 'Menu');
+  hamburger.setAttribute('aria-expanded', 'false');
+  hamburger.append(fnIcon('menu'));
+
+  // --- Logo badge ---------------------------------------------------------
   const brand = document.createElement('div');
   brand.className = 'nav-brand';
-  if (logoLink) {
-    const a = document.createElement('a');
-    a.href = logoLink.getAttribute('href');
-    a.textContent = logoLink.textContent;
-    brand.append(a);
-  }
+  const brandLink = document.createElement('a');
+  brandLink.href = homeHref;
+  brandLink.setAttribute('aria-label', 'Food Network');
+  const logo = document.createElement('span');
+  logo.className = 'nav-logo';
+  logo.append(
+    Object.assign(document.createElement('span'), { className: 'nav-logo-food', textContent: 'food' }),
+    Object.assign(document.createElement('span'), { className: 'nav-logo-network', textContent: 'network' }),
+  );
+  brandLink.append(logo);
+  brand.append(brandLink);
 
+  // --- Primary links ------------------------------------------------------
   const links = document.createElement('ul');
   links.className = 'nav-links';
   primaryList?.querySelectorAll(':scope > li > a').forEach((a) => {
@@ -97,20 +117,48 @@ async function decorateFoodNetwork(block) {
     links.append(li);
   });
 
-  const utility = document.createElement('ul');
-  utility.className = 'nav-utility';
-  utilityList?.querySelectorAll(':scope > li > a').forEach((a) => {
-    const li = document.createElement('li');
-    const link = document.createElement('a');
-    link.href = a.getAttribute('href');
-    link.textContent = a.textContent;
-    li.append(link);
-    utility.append(li);
+  // --- Search -------------------------------------------------------------
+  const search = document.createElement('form');
+  search.className = 'nav-search';
+  search.setAttribute('role', 'search');
+  search.action = '//www.foodnetwork.com/search';
+  const searchInput = document.createElement('input');
+  searchInput.type = 'search';
+  searchInput.name = 'searchTerm';
+  searchInput.placeholder = 'What are you looking for?';
+  searchInput.className = 'nav-search-input';
+  searchInput.setAttribute('aria-label', 'Search');
+  const searchSubmit = document.createElement('button');
+  searchSubmit.type = 'submit';
+  searchSubmit.className = 'nav-search-submit';
+  searchSubmit.setAttribute('aria-label', 'Search');
+  searchSubmit.append(fnIcon('search'));
+  search.append(searchInput, searchSubmit);
+
+  // --- Action icons (bookmark / cart / account) ---------------------------
+  const actions = document.createElement('div');
+  actions.className = 'nav-actions';
+  [
+    { name: 'bookmark', label: 'Saved', href: '//www.foodnetwork.com/site/newsletter-sign-up' },
+    { name: 'cart', label: 'Shopping list', href: '//www.foodnetwork.com/shopping-list' },
+    { name: 'user', label: 'Account', href: '//www.foodnetwork.com/profiles' },
+  ].forEach(({ name, label, href }) => {
+    const a = document.createElement('a');
+    a.className = `nav-action nav-action-${name}`;
+    a.href = href;
+    a.setAttribute('aria-label', label);
+    a.append(fnIcon(name));
+    actions.append(a);
   });
 
-  bar.append(brand, links);
-  if (utility.children.length) bar.append(utility);
+  bar.append(hamburger, brand, links, search, actions);
   nav.append(bar);
+
+  // Hamburger toggles the primary links on small screens.
+  hamburger.addEventListener('click', () => {
+    const open = nav.classList.toggle('nav-open');
+    hamburger.setAttribute('aria-expanded', String(open));
+  });
 
   const navWrapper = document.createElement('div');
   navWrapper.className = 'nav-wrapper';

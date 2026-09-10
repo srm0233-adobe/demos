@@ -35,6 +35,10 @@ body.foodnetwork {
   /* action icons (masked SVGs; color comes from currentcolor) */
   --fn-icon-bookmark: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M6 2h12a2 2 0 0 1 2 2v18l-8-4-8 4V4a2 2 0 0 1 2-2z"/></svg>');
   --fn-icon-share: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path fill="black" d="M18 16a3 3 0 0 0-2.4 1.2l-6.7-3.9a3 3 0 0 0 0-2.6l6.7-3.9A3 3 0 1 0 15 3a3 3 0 0 0 .1.8L8.4 7.7a3 3 0 1 0 0 8.6l6.7 3.9a3 3 0 1 0 2.9-2.2z"/></svg>');
+  --fn-icon-menu: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path stroke="black" stroke-width="2" stroke-linecap="round" d="M3 6h18M3 12h18M3 18h18"/></svg>');
+  --fn-icon-search: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="black" stroke-width="2"><circle cx="11" cy="11" r="7"/><path stroke-linecap="round" d="M21 21l-4.3-4.3"/></g></svg>');
+  --fn-icon-cart: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="black" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 12.4a1 1 0 0 0 1 .8h9.4a1 1 0 0 0 1-.8L21 8H6"/><circle cx="9" cy="20" r="1"/><circle cx="18" cy="20" r="1"/></g></svg>');
+  --fn-icon-user: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g fill="none" stroke="black" stroke-width="2"><circle cx="12" cy="8" r="4"/><path stroke-linecap="round" d="M4 21a8 8 0 0 1 16 0"/></g></svg>');
 }
 
 /* ===== Global element theming (scoped to Food Network pages) ===== */
@@ -197,60 +201,202 @@ body.foodnetwork header {
 }
 
 body.foodnetwork .nav-foodnetwork {
-  border-bottom: 3px solid var(--fn-red);
+  border-bottom: 1px solid var(--fn-rule);
 }
 
 body.foodnetwork .nav-foodnetwork .nav-bar {
   display: flex;
-  flex-wrap: wrap;
   align-items: center;
-  gap: 12px 24px;
+  gap: 16px;
   max-width: var(--content-max-width, 1200px);
   margin: 0 auto;
-  padding: 16px 24px;
+  padding: 12px 24px;
+}
+
+/* Hamburger */
+body.foodnetwork .nav-foodnetwork .nav-hamburger {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  cursor: pointer;
+}
+
+/* Round red logo badge */
+body.foodnetwork .nav-foodnetwork .nav-brand {
+  flex: 0 0 auto;
 }
 
 body.foodnetwork .nav-foodnetwork .nav-brand a {
-  font-family: var(--heading-font-family);
-  font-weight: 700;
-  font-size: 24px;
-  color: var(--fn-red);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
+  display: inline-flex;
 }
 
-body.foodnetwork .nav-foodnetwork .nav-links,
-body.foodnetwork .nav-foodnetwork .nav-utility {
+body.foodnetwork .nav-foodnetwork .nav-logo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: var(--fn-red);
+  color: #fff;
+  line-height: 1;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-logo-food {
+  font-family: georgia, "Times New Roman", times, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 22px;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-logo-network {
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
+  font-size: 7px;
+  font-weight: 700;
+  margin-top: 1px;
+}
+
+/* Primary links */
+body.foodnetwork .nav-foodnetwork .nav-links {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 18px;
+  gap: 22px;
   margin: 0;
   padding: 0;
   list-style: none;
-}
-
-body.foodnetwork .nav-foodnetwork .nav-utility {
-  margin-left: auto;
 }
 
 body.foodnetwork .nav-foodnetwork .nav-links a {
   color: var(--fn-charcoal);
   font-weight: 700;
   font-size: var(--body-font-size-s);
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
 }
 
-body.foodnetwork .nav-foodnetwork .nav-utility a {
-  color: var(--fn-grey);
-  font-size: var(--body-font-size-xs);
-}
-
-body.foodnetwork .nav-foodnetwork .nav-links a:hover,
-body.foodnetwork .nav-foodnetwork .nav-utility a:hover {
+body.foodnetwork .nav-foodnetwork .nav-links a:hover {
   color: var(--fn-red);
   text-decoration: none;
+}
+
+/* Search — pushed to the right of the links */
+body.foodnetwork .nav-foodnetwork .nav-search {
+  display: flex;
+  align-items: center;
+  flex: 0 1 260px;
+  margin: 0 0 0 auto;
+  border: 1px solid var(--fn-rule);
+  border-radius: 999px;
+  padding: 0 6px 0 16px;
+  background-color: #fff;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-search-input {
+  flex: 1 1 auto;
+  min-width: 0;
+  border: 0;
+  padding: 9px 0;
+  background: none;
+  font-size: var(--body-font-size-xs);
+  color: var(--fn-charcoal);
+}
+
+body.foodnetwork .nav-foodnetwork .nav-search-input:focus {
+  outline: none;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-search-submit {
+  flex: 0 0 auto;
+  margin: 0;
+  padding: 6px;
+  border: 0;
+  border-radius: 50%;
+  background: none;
+  color: var(--fn-charcoal);
+  cursor: pointer;
+}
+
+/* Action icons */
+body.foodnetwork .nav-foodnetwork .nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex: 0 0 auto;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-action {
+  display: inline-flex;
+  color: var(--fn-charcoal);
+}
+
+body.foodnetwork .nav-foodnetwork .nav-action:hover {
+  color: var(--fn-red);
+}
+
+/* Masked icon glyphs */
+body.foodnetwork .nav-foodnetwork .nav-icon {
+  display: inline-block;
+  width: 22px;
+  height: 22px;
+  background-color: currentcolor;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-hamburger .nav-icon {
+  mask: var(--fn-icon-menu) center / contain no-repeat;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-search-submit .nav-icon {
+  mask: var(--fn-icon-search) center / contain no-repeat;
+  width: 18px;
+  height: 18px;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-action-bookmark .nav-icon {
+  mask: var(--fn-icon-bookmark) center / contain no-repeat;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-action-cart .nav-icon {
+  mask: var(--fn-icon-cart) center / contain no-repeat;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-action-user .nav-icon {
+  mask: var(--fn-icon-user) center / contain no-repeat;
+  border: 1px solid currentcolor;
+  border-radius: 50%;
+  padding: 3px;
+  box-sizing: content-box;
+  width: 16px;
+  height: 16px;
+}
+
+/* Small screens: collapse links behind the hamburger */
+@media (width < 900px) {
+  body.foodnetwork .nav-foodnetwork .nav-links {
+    display: none;
+    flex-basis: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    order: 5;
+  }
+
+  body.foodnetwork .nav-foodnetwork.nav-open .nav-links {
+    display: flex;
+  }
+
+  body.foodnetwork .nav-foodnetwork .nav-bar {
+    flex-wrap: wrap;
+  }
+}
+
+@media (width >= 900px) {
+  body.foodnetwork .nav-foodnetwork .nav-hamburger {
+    /* On desktop the reference keeps the hamburger visible beside the logo. */
+    order: 0;
+  }
 }
 
 /* ===== Food Network footer ===== */
