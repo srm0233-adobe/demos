@@ -64,5 +64,13 @@ export default function decorate(block) {
 
   block.textContent = '';
   block.append(feature);
-  if (rail.children.length) block.append(rail);
+  if (rail.children.length) {
+    block.append(rail);
+  } else {
+    // No companion rail: render as a full-bleed banner with the text overlaid
+    // as a box in the bottom-left corner.
+    block.classList.add('hero-lead-overlay');
+    const section = block.closest('.section');
+    if (section) section.classList.add('hero-lead-full');
+  }
 }

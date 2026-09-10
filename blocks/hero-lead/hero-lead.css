@@ -6,6 +6,21 @@
   gap: 24px;
 }
 
+/* --- Full-bleed lead ---
+   When the lead has no companion rail (block gets .hero-lead-overlay and its
+   section gets .hero-lead-full, both set in decorate()), it renders as a
+   full-width banner with the text overlaid as a box in the bottom-left corner.
+   Break the feature out of the section's centered content column so the image
+   spans edge to edge. */
+main .section.hero-lead-full {
+  margin: 0;
+}
+
+main .section.hero-lead-full > div {
+  max-width: none;
+  padding: 0;
+}
+
 /* --- Main feature --- */
 .hero-lead .hero-lead-feature .hero-lead-image {
   line-height: 0;
@@ -28,6 +43,22 @@
 
 .hero-lead .hero-lead-feature .hero-lead-body > * {
   margin: 0;
+}
+
+/* Overlay treatment — the full-bleed banner (no rail). */
+.hero-lead.hero-lead-overlay .hero-lead-feature {
+  position: relative;
+}
+
+.hero-lead.hero-lead-overlay .hero-lead-feature .hero-lead-body {
+  position: absolute;
+  left: 0;
+  bottom: 40px;
+  box-sizing: border-box;
+  max-width: min(90%, 640px);
+  margin: 0;
+  padding: 24px 40px;
+  background-color: #fff;
 }
 
 /* --- Companion rail --- */
@@ -60,11 +91,18 @@
   margin: 0;
 }
 
-/* On wider screens the feature sits beside the rail. */
+/* On wider screens the feature sits beside the rail (only when a rail exists,
+   i.e. not the full-bleed overlay variant). */
 @media (width >= 900px) {
-  .hero-lead {
+  .hero-lead:not(.hero-lead-overlay) {
     grid-template-columns: 2fr 1fr;
     align-items: start;
     gap: 40px;
   }
+}
+
+/* Overlay banner image height cap (placed last so it follows the lower-
+   specificity rail image rules for stylelint's descending-specificity check). */
+.hero-lead.hero-lead-overlay .hero-lead-feature .hero-lead-image img {
+  max-height: 540px;
 }
