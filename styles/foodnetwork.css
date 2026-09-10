@@ -213,13 +213,14 @@ body.foodnetwork .nav-foodnetwork .nav-bar {
   padding: 12px 24px;
 }
 
-/* Hamburger */
+/* Hamburger — force charcoal over the global button color (which is white). */
 body.foodnetwork .nav-foodnetwork .nav-hamburger {
   flex: 0 0 auto;
   margin: 0;
   padding: 0;
   border: 0;
   background: none;
+  color: var(--fn-charcoal);
   cursor: pointer;
 }
 
@@ -274,7 +275,8 @@ body.foodnetwork .nav-foodnetwork .nav-links {
 body.foodnetwork .nav-foodnetwork .nav-links a {
   color: var(--fn-charcoal);
   font-weight: 700;
-  font-size: var(--body-font-size-s);
+  font-size: 16px;
+  white-space: nowrap;
 }
 
 body.foodnetwork .nav-foodnetwork .nav-links a:hover {
@@ -315,7 +317,7 @@ body.foodnetwork .nav-foodnetwork .nav-search-submit {
   border: 0;
   border-radius: 50%;
   background: none;
-  color: var(--fn-charcoal);
+  color: var(--fn-charcoal); /* over global white button color */
   cursor: pointer;
 }
 
@@ -327,12 +329,13 @@ body.foodnetwork .nav-foodnetwork .nav-actions {
   flex: 0 0 auto;
 }
 
-body.foodnetwork .nav-foodnetwork .nav-action {
+/* Use a.nav-action (element + class) so it beats the global a:any-link red. */
+body.foodnetwork .nav-foodnetwork a.nav-action:any-link {
   display: inline-flex;
   color: var(--fn-charcoal);
 }
 
-body.foodnetwork .nav-foodnetwork .nav-action:hover {
+body.foodnetwork .nav-foodnetwork a.nav-action:hover {
   color: var(--fn-red);
 }
 
