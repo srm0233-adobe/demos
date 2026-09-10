@@ -85,10 +85,12 @@
   margin: 0;
 }
 
-/* On wider screens the feature sits beside the rail (only when a rail exists,
-   i.e. not the full-bleed overlay variant). */
+/* On wider screens the feature sits beside the rail — but only when a rail is
+   actually present. Keyed on the rail element itself (not the JS-set overlay
+   class) so a rail-less lead is always full content-width even if the block
+   JS hasn't run yet. */
 @media (width >= 900px) {
-  .hero-lead:not(.hero-lead-overlay) {
+  .hero-lead:has(.hero-lead-rail) {
     grid-template-columns: 2fr 1fr;
     align-items: start;
     gap: 40px;
