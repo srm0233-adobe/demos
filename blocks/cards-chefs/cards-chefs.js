@@ -38,6 +38,22 @@ export default function decorate(block) {
       }
     });
 
+    // Classify the body's direct children: the one holding the profile link is
+    // the name (may be a bare <a> after EDS strips the <p> wrapper of a
+    // standalone link, or a <p> wrapping it); a short link-less line right after
+    // it is a role (e.g. "Food Network Chef"); everything else is description.
+    const items = [...body.children];
+    const nameIdx = items.findIndex((el) => (el.tagName === 'A' && el.href) || el.querySelector?.('a[href]'));
+    items.forEach((el, i) => {
+      if (i === nameIdx) {
+        el.classList.add(el.tagName === 'A' ? 'cards-chefs-name-link' : 'cards-chefs-name');
+      } else if (nameIdx !== -1 && i === nameIdx + 1 && !el.querySelector?.('a') && el.textContent.trim().split(/\s+/).length <= 4) {
+        el.classList.add('cards-chefs-role');
+      } else {
+        el.classList.add('cards-chefs-desc');
+      }
+    });
+
     if (portrait.children.length) li.append(portrait);
     li.append(body);
     ul.append(li);
