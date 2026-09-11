@@ -1,81 +1,183 @@
-/* cards-tiles — image tile + clickable title below; responsive 1/2/3-up grid */
+/* cards-tiles — image tile + kicker/title/meta below; responsive 1/2/3-up grid */
 .cards-tiles > ul {
   list-style: none;
   margin: 24px 0 0;
   padding: 0;
   display: grid;
   grid-template-columns: 1fr;
-  gap: 24px 32px;
+  gap: 32px;
 }
 
 .cards-tiles > ul > li {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  min-width: 0;
   border: none;
   background: none;
 }
 
-/* image tile — 227x162 on desktop, scales down responsively on smaller screens */
+/* image tile */
 .cards-tiles .cards-tiles-tile-image {
   line-height: 0;
 }
 
 /* image link wrapper (auto-added by the block) sizes to the image */
 .cards-tiles .cards-tiles-tile-image-link {
-  display: inline-block;
+  display: block;
   line-height: 0;
 }
 
 .cards-tiles .cards-tiles-tile-image img {
   width: 100%;
-  max-width: 227px;
-  aspect-ratio: 227 / 162;
+  aspect-ratio: 4 / 3;
   object-fit: cover;
   border-radius: 2px;
 }
 
-/* clickable title below the tile — blue link text, no background */
+/* text block below the tile */
 .cards-tiles .cards-tiles-tile-body {
   margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .cards-tiles .cards-tiles-tile-body p {
   margin: 0;
 }
 
-/* caption renders as plain bold blue link text, never a button/CTA pill */
-.cards-tiles .cards-tiles-tile-body .button-container {
-  margin: 0;
+/* eyebrow / kicker — small uppercase gray label above the title */
+.cards-tiles .cards-tiles-eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b6b6b;
 }
 
-.cards-tiles .cards-tiles-tile-body a:any-link,
-.cards-tiles .cards-tiles-tile-body a.button:any-link {
+/* title — bold black headline (image + text share one authored link) */
+.cards-tiles .cards-tiles-title {
+  font-size: 26px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.cards-tiles .cards-tiles-title a:any-link,
+.cards-tiles .cards-tiles-title a.button:any-link {
   display: inline;
   margin: 0;
   padding: 0;
   border: none;
   border-radius: 0;
   background: none;
-  color: #0057b8;
-  font-size: 16px;
-  font-weight: 700;
+  color: var(--fn-charcoal, #1a1a1a);
+  font: inherit;
   text-decoration: none;
   white-space: normal;
 }
 
-.cards-tiles .cards-tiles-tile-body a:hover {
+.cards-tiles .cards-tiles-title a:hover {
   background: none;
-  color: #0057b8;
-  text-decoration: underline;
+  color: var(--fn-red, #c8102e);
+  text-decoration: none;
 }
 
-@media (width >= 900px) {
-  /* fixed 227x162 image on desktop */
-  .cards-tiles .cards-tiles-tile-image img {
-    width: 227px;
-    height: 162px;
-  }
+/* meta / subtitle line below the title */
+.cards-tiles .cards-tiles-meta {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--fn-charcoal, #1a1a1a);
+}
+
+/* ===== Schedule variant — 4-up row whose last card is a TV schedule ===== */
+.cards-tiles.schedule > ul {
+  gap: 24px;
+}
+
+/* TV schedule card (text-only, no image) */
+.cards-tiles .cards-tiles-card-schedule {
+  gap: 0;
+}
+
+.cards-tiles .cards-tiles-schedule {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.cards-tiles .cards-tiles-schedule-badge {
+  align-self: flex-start;
+  padding: 4px 10px;
+  background: var(--fn-red, #c8102e);
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.cards-tiles .cards-tiles-schedule-label {
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: 13px;
+  font-weight: 700;
+  color: #6b6b6b;
+}
+
+.cards-tiles .cards-tiles-schedule-show {
+  font-size: 22px;
+  line-height: 1.15;
+  font-weight: 700;
+  color: var(--fn-charcoal, #1a1a1a);
+}
+
+.cards-tiles .cards-tiles-schedule-time {
+  font-size: 15px;
+  color: #6b6b6b;
+}
+
+.cards-tiles .cards-tiles-schedule-cta {
+  margin: 8px 0;
+}
+
+.cards-tiles .cards-tiles-schedule-cta a:any-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 22px;
+  border-radius: 999px;
+  background: var(--fn-charcoal, #1a1a1a);
+  color: #fff;
+  font-size: 15px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* red "live" dot before the Watch-Live CTA */
+.cards-tiles .cards-tiles-schedule-cta a::before {
+  content: '';
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--fn-red, #c8102e);
+}
+
+.cards-tiles .cards-tiles-schedule-more {
+  margin-top: auto;
+  padding-top: 8px;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.cards-tiles .cards-tiles-schedule-more a:any-link {
+  color: var(--fn-charcoal, #1a1a1a);
+  text-decoration: none;
+}
+
+.cards-tiles .cards-tiles-schedule-more a:hover {
+  text-decoration: underline;
 }
 
 @media (width >= 600px) {
@@ -87,5 +189,10 @@
 @media (width >= 900px) {
   .cards-tiles > ul {
     grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* schedule variant lays out 4 across so the schedule card is the 4th column */
+  .cards-tiles.schedule > ul {
+    grid-template-columns: repeat(4, 1fr);
   }
 }
