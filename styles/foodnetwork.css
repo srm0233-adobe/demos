@@ -335,6 +335,22 @@ body.foodnetwork .nav-foodnetwork .nav-icon svg {
   height: 100%;
 }
 
+/* The AT&T header draws its menu/search glyphs via a currentcolor background
+   bar (.nav-icon-menu) and ::before/::after pseudo-elements (.nav-icon-search),
+   and those rules also match this nav. The Food Network nav uses inline SVGs,
+   so neutralize them — otherwise the pseudo bars/glass paint blue over the SVG. */
+body.foodnetwork .nav-foodnetwork .nav-icon-menu {
+  height: auto;
+  background: none;
+}
+
+body.foodnetwork .nav-foodnetwork .nav-icon-menu::before,
+body.foodnetwork .nav-foodnetwork .nav-icon-menu::after,
+body.foodnetwork .nav-foodnetwork .nav-icon-search::before,
+body.foodnetwork .nav-foodnetwork .nav-icon-search::after {
+  content: none;
+}
+
 body.foodnetwork .nav-foodnetwork .nav-search-submit .nav-icon {
   width: 18px;
   height: 18px;
