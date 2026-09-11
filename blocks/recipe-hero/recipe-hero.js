@@ -98,6 +98,39 @@ export default function decorate(block) {
     });
   });
 
+  // --- Rating stars --------------------------------------------------------
+  // Turn a "4.4 / 5  270 Reviews" line into filled/empty star glyphs plus a
+  // reviews count, matching the reference site's red star rating.
+  const rating = content.querySelector('.recipe-hero-rating');
+  if (rating) {
+    const text = rating.textContent.trim();
+    const scoreMatch = text.match(/([\d.]+)\s*\/\s*5/);
+    const reviewsMatch = text.match(/([\d,]+)\s*reviews?/i);
+    if (scoreMatch) {
+      const score = parseFloat(scoreMatch[1]);
+      rating.textContent = '';
+      const stars = document.createElement('span');
+      stars.className = 'recipe-hero-stars';
+      stars.setAttribute('aria-label', `${score} out of 5 stars`);
+      for (let i = 1; i <= 5; i += 1) {
+        const star = document.createElement('span');
+        let fill = 'empty';
+        if (score >= i) fill = 'full';
+        else if (score >= i - 0.5) fill = 'half';
+        star.className = `recipe-hero-star recipe-hero-star-${fill}`;
+        star.setAttribute('aria-hidden', 'true');
+        stars.append(star);
+      }
+      rating.append(stars);
+      if (reviewsMatch) {
+        const reviews = document.createElement('span');
+        reviews.className = 'recipe-hero-reviews';
+        reviews.textContent = `${reviewsMatch[1]} Reviews`;
+        rating.append(reviews);
+      }
+    }
+  }
+
   // --- Share / Save actions ------------------------------------------------
   const actions = document.createElement('div');
   actions.className = 'recipe-hero-actions';

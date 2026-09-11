@@ -95,7 +95,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 10px;
+}
+
+/* Star rating — five glyphs; fill level set per star by the block JS. */
+.recipe-hero .recipe-hero-stars {
+  display: inline-flex;
+  gap: 2px;
+}
+
+.recipe-hero .recipe-hero-star {
+  width: 20px;
+  height: 20px;
+  background-color: currentcolor;
+  mask: var(--fn-icon-star, none) center / contain no-repeat;
+}
+
+.recipe-hero .recipe-hero-star-empty {
+  opacity: 0.25;
+}
+
+.recipe-hero .recipe-hero-star-half {
+  mask-image: var(--fn-icon-star-half, none);
 }
 
 /* Share / Save action row */
