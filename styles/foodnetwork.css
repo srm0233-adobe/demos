@@ -54,6 +54,13 @@ body.foodnetwork main > .section > div {
   padding-bottom: 24px;
 }
 
+/* Cards-tiles sections are the exception: the individual tiles are the white
+   cards, so the section band itself stays on the grey canvas (its heading sits
+   directly on grey and the grey shows in the gaps between cards). */
+body.foodnetwork main > .cards-tiles-container > div {
+  background-color: transparent;
+}
+
 body.foodnetwork a:hover {
   text-decoration: underline;
 }
