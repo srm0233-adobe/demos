@@ -18,6 +18,7 @@ body.foodnetwork {
   --fn-grey: #6b6b6b;           /* secondary/meta text */
   --fn-rule: #e0e0e0;           /* hairline rules on meta strip / directions */
   --fn-cream: #f7f5f0;          /* soft editorial background band */
+  --fn-teal: #4bb5a5;           /* prev/next pager chevrons */
 
   /* map onto the global color system used across styles.css + blocks */
   --background-color: #f9f9f9;
@@ -90,6 +91,47 @@ body.foodnetwork button:hover,
 body.foodnetwork button:focus {
   border-color: var(--fn-red-dark);
   background-color: var(--fn-red-dark);
+}
+
+/* ===== page-nav (Prev/Next pager) =====
+   Bare teal chevrons (no blue circle), gray uppercase labels, with a divider
+   between the two items — matches foodnetwork.com. */
+body.foodnetwork .page-nav .page-nav-label {
+  color: var(--fn-grey);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  font-family: var(--body-font-family);
+}
+
+body.foodnetwork .page-nav .page-nav-item:hover .page-nav-label {
+  color: var(--fn-charcoal);
+}
+
+/* Replace the circular blue arrow with a bare teal chevron. */
+body.foodnetwork .page-nav .page-nav-arrow {
+  width: 16px;
+  height: 16px;
+  background: none;
+  border-radius: 0;
+}
+
+body.foodnetwork .page-nav .page-nav-arrow::after {
+  width: 10px;
+  height: 10px;
+  border-width: 3px;
+  border-color: var(--fn-teal);
+  border-top: 0;
+  border-left: 0;
+}
+
+/* Divider between the prev and next items. */
+body.foodnetwork .page-nav .page-nav-wrap {
+  align-items: stretch;
+}
+
+body.foodnetwork .page-nav .page-nav-next {
+  border-left: 1px solid var(--fn-rule);
+  padding-left: 24px;
 }
 
 /* ===== recipe-hero ===== */
