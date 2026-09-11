@@ -206,13 +206,11 @@ body.foodnetwork .directions .directions-step-body {
   line-height: 1.7;
 }
 
-/* ===== section headings on the recipe page (Ingredients / Directions / Looking for…) ===== */
+/* ===== section headings (Quick Bread Recipes, Ingredients, Directions, …) ===== */
 body.foodnetwork main .default-content-wrapper h2 {
   font-family: var(--heading-font-family);
   color: var(--fn-charcoal);
-  border-bottom: 3px solid var(--fn-red);
-  display: inline-block;
-  padding-bottom: 6px;
+  font-size: 35px;
 }
 
 /* ===== Food Network header ===== */
@@ -487,11 +485,7 @@ body.foodnetwork .cards-spotlight .cards-spotlight-body a:hover {
   color: var(--fn-red);
 }
 
-/* cards-chefs — name in red, role/bio in grey */
-body.foodnetwork .cards-chefs .cards-chefs-portrait {
-  border: 3px solid var(--fn-red);
-}
-
+/* cards-chefs — name/bio colors (portrait styling lives in the block CSS) */
 /* stylelint-disable-next-line no-descending-specificity */
 body.foodnetwork .cards-chefs .cards-chefs-body a {
   font-weight: 700;
@@ -509,25 +503,9 @@ body.foodnetwork .cards-chefs .cards-chefs-body p:not(:first-child) {
   line-height: 1.4;
 }
 
-/* cards-news — red category eyebrow, serif headline, grey summary */
-body.foodnetwork .cards-news .cards-news-eyebrow {
-  color: var(--fn-red);
-  font-weight: 700;
-}
-
-/* stylelint-disable-next-line no-descending-specificity */
-body.foodnetwork .cards-news .cards-news-body a {
-  font-family: var(--heading-font-family);
-  font-size: var(--heading-font-size-s);
-  font-weight: 700;
-  color: var(--fn-charcoal);
-}
-
+/* cards-news — headline/eyebrow styling lives in the block CSS; only the
+   hover accent is themed here. */
 /* stylelint-disable-next-line no-descending-specificity */
 body.foodnetwork .cards-news .cards-news-body a:hover {
   color: var(--fn-red);
-}
-
-body.foodnetwork .cards-news .cards-news-item {
-  border-color: var(--fn-rule);
 }
