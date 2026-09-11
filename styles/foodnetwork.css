@@ -59,8 +59,15 @@ body.foodnetwork main > .section > div {
    sits directly on grey and the grey shows around the cards). */
 body.foodnetwork main > .cards-tiles-container > div,
 body.foodnetwork main > .cards-spotlight-container > div,
-body.foodnetwork main > .cards-news-container > div {
+body.foodnetwork main > .cards-news-container > div,
+body.foodnetwork main > .hero-lead-container > div {
   background-color: transparent;
+}
+
+/* The hero-lead is a full-width banner, so its content column carries no card
+   padding — the image spans the whole content width. */
+body.foodnetwork main > .hero-lead-container > div {
+  padding: 0;
 }
 
 body.foodnetwork a:hover {
