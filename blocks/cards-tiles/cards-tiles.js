@@ -73,6 +73,11 @@ function decorateScheduleCard(li) {
 }
 
 export default function decorate(block) {
+  // Tag the block with its card count so the CSS can size the row to match the
+  // reference site (4-up 290px cards, 3-up 397px cards, 2-up 610px cards).
+  const cardCount = block.children.length;
+  block.classList.add(`cards-tiles-count-${cardCount}`);
+
   const ul = document.createElement('ul');
   [...block.children].forEach((row) => {
     const li = document.createElement('li');

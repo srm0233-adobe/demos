@@ -41,6 +41,7 @@
   display: flex;
   flex-direction: column;
   gap: 8px;
+  padding-top: 16px;
 }
 
 .cards-tiles .cards-tiles-tile-body p {
@@ -186,13 +187,84 @@
   }
 }
 
+/* ===== Fixed card dimensions matching the Food Network reference =====
+   Below the breakpoint the grid stays fluid (1-up / 2-up above); at desktop
+   width each card takes its exact reference size and the whole row sits on one
+   line. The image height and the text-block height are set explicitly per
+   layout so they stack with no gap and sum to the card height. */
 @media (width >= 900px) {
   .cards-tiles > ul {
     grid-template-columns: repeat(3, 1fr);
   }
 
-  /* schedule variant lays out 4 across so the schedule card is the 4th column */
+  /* Cards stack image + text with no gap so heights sum exactly. Fixed image
+     heights override the fluid 4/3 ratio; the text block is a fixed-height
+     white panel (border-box so its padding is included in the height). */
+  .cards-tiles.cards-tiles-count-2 > ul > li,
+  .cards-tiles.cards-tiles-count-3 > ul > li,
+  .cards-tiles.cards-tiles-count-4 > ul > li,
+  .cards-tiles.schedule > ul > li {
+    gap: 0;
+  }
+
+  .cards-tiles.cards-tiles-count-2 .cards-tiles-tile-body,
+  .cards-tiles.cards-tiles-count-3 .cards-tiles-tile-body,
+  .cards-tiles.cards-tiles-count-4 .cards-tiles-tile-body,
+  .cards-tiles.schedule .cards-tiles-tile-body {
+    box-sizing: border-box;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .cards-tiles.cards-tiles-count-2 .cards-tiles-tile-image img,
+  .cards-tiles.cards-tiles-count-3 .cards-tiles-tile-image img,
+  .cards-tiles.cards-tiles-count-4 .cards-tiles-tile-image img,
+  .cards-tiles.schedule .cards-tiles-tile-image img {
+    aspect-ratio: auto;
+  }
+
+  /* 4-up: 290×319 cards (image 290×217, text 290×102) */
+  .cards-tiles.cards-tiles-count-4 > ul,
   .cards-tiles.schedule > ul {
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(4, 290px);
+    justify-content: space-between;
+  }
+
+  .cards-tiles.cards-tiles-count-4 .cards-tiles-tile-image img,
+  .cards-tiles.schedule .cards-tiles-tile-image img {
+    height: 217px;
+  }
+
+  .cards-tiles.cards-tiles-count-4 .cards-tiles-tile-body,
+  .cards-tiles.schedule .cards-tiles-tile-body {
+    height: 102px;
+  }
+
+  /* 3-up: 397×427 cards (image 397×298, text 397×127) */
+  .cards-tiles.cards-tiles-count-3 > ul {
+    grid-template-columns: repeat(3, 397px);
+    justify-content: space-between;
+  }
+
+  .cards-tiles.cards-tiles-count-3 .cards-tiles-tile-image img {
+    height: 298px;
+  }
+
+  .cards-tiles.cards-tiles-count-3 .cards-tiles-tile-body {
+    height: 127px;
+  }
+
+  /* 2-up: 610×562 cards (image 610×457, text 610×105) */
+  .cards-tiles.cards-tiles-count-2 > ul {
+    grid-template-columns: repeat(2, 610px);
+    justify-content: space-between;
+  }
+
+  .cards-tiles.cards-tiles-count-2 .cards-tiles-tile-image img {
+    height: 457px;
+  }
+
+  .cards-tiles.cards-tiles-count-2 .cards-tiles-tile-body {
+    height: 105px;
   }
 }
