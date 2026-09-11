@@ -1,19 +1,27 @@
-/* Recipe Meta — compact horizontal stat strip. Structural styles only. */
+/* Recipe Meta — 3-column stat strip with vertical dividers (matches
+   foodnetwork.com). Each column stacks two label/value rows. */
 
 .recipe-meta .recipe-meta-strip {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  gap: 16px 32px;
-  padding: 16px 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px 0;
+  padding: 24px 0;
   border-top: 1px solid;
   border-bottom: 1px solid;
+}
+
+.recipe-meta .recipe-meta-col {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 0 24px;
 }
 
 .recipe-meta .recipe-meta-item {
   display: flex;
   align-items: baseline;
   gap: 6px;
+  font-size: 18px;
 }
 
 .recipe-meta .recipe-meta-item p {
@@ -21,17 +29,26 @@
   display: inline;
 }
 
+/* Label is normal weight; the value is bold (matches the reference). */
 .recipe-meta .recipe-meta-label {
-  font-weight: 700;
+  font-weight: 400;
 }
 
 .recipe-meta .recipe-meta-label::after {
   content: ':';
 }
 
+.recipe-meta .recipe-meta-value {
+  font-weight: 700;
+}
+
 @media (width >= 900px) {
   .recipe-meta .recipe-meta-strip {
-    flex-wrap: nowrap;
-    gap: 40px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Vertical dividers between the columns. */
+  .recipe-meta .recipe-meta-col + .recipe-meta-col {
+    border-left: 1px solid var(--fn-rule, #e0e0e0);
   }
 }

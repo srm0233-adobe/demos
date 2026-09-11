@@ -175,10 +175,8 @@ body.foodnetwork .recipe-meta .recipe-meta-strip {
 }
 
 body.foodnetwork .recipe-meta .recipe-meta-label {
-  color: var(--fn-grey);
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: var(--body-font-size-xs);
+  color: var(--fn-charcoal);
+  font-weight: 400;
 }
 
 body.foodnetwork .recipe-meta .recipe-meta-value {

@@ -40,9 +40,17 @@ export default function decorate(block) {
     return item;
   });
 
+  // Group the stats into columns of two stacked rows (Level/Total, Prep/Cook,
+  // Yield/Nutrition), matching foodnetwork.com's 3-column meta strip with
+  // vertical dividers between columns.
   const strip = document.createElement('div');
   strip.className = 'recipe-meta-strip';
-  strip.append(...items);
+  for (let i = 0; i < items.length; i += 2) {
+    const col = document.createElement('div');
+    col.className = 'recipe-meta-col';
+    col.append(...items.slice(i, i + 2));
+    strip.append(col);
+  }
 
   // EDS decorateButtons() wraps standalone links (e.g. "Nutrition Info") as
   // .button / .button-container before blocks decorate. Strip that so meta
