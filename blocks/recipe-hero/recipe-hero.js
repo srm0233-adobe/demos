@@ -28,8 +28,24 @@ export default function decorate(block) {
   media.className = 'recipe-hero-media';
   if (mediaRow) {
     const cells = [...mediaRow.children];
+    // A video-viewer link (e.g. Scene7/Dynamic Media VideoViewer) renders as an
+    // embedded, playable iframe in place of the hero image.
+    const videoLink = [...mediaRow.querySelectorAll('a[href]')]
+      .find((a) => /videoviewer|s7viewers/i.test(a.getAttribute('href')));
     const pic = mediaRow.querySelector('picture');
-    if (pic) {
+    if (videoLink) {
+      const figure = document.createElement('div');
+      figure.className = 'recipe-hero-image recipe-hero-video';
+      const frame = document.createElement('iframe');
+      frame.className = 'recipe-hero-video-frame';
+      frame.src = videoLink.getAttribute('href');
+      frame.title = videoLink.textContent.trim() || 'Recipe video';
+      frame.setAttribute('allow', 'autoplay; fullscreen; encrypted-media');
+      frame.setAttribute('allowfullscreen', '');
+      frame.setAttribute('loading', 'lazy');
+      figure.append(frame);
+      media.append(figure);
+    } else if (pic) {
       const img = pic.querySelector('img');
       const optimized = createOptimizedPicture(
         img?.src,
