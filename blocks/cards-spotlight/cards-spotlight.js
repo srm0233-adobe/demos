@@ -47,6 +47,18 @@ export default function decorate(block) {
     }
   });
 
+  // Classify the body's direct children relative to the headline link. The
+  // link may be a bare <a> (EDS strips the <p> wrapper of a standalone link) or
+  // a <p> containing the link. Text before it is an eyebrow/kicker; the link is
+  // the title; anything after is meta. Mirrors the cards-tiles card anatomy.
+  const items = [...body.children];
+  const titleIdx = items.findIndex((el) => (el.tagName === 'A' && el.href) || el.querySelector?.('a[href]'));
+  items.forEach((el, i) => {
+    if (i === titleIdx) el.classList.add(el.tagName === 'A' ? 'cards-spotlight-title-link' : 'cards-spotlight-title');
+    else if (titleIdx !== -1 && i < titleIdx) el.classList.add('cards-spotlight-eyebrow');
+    else el.classList.add('cards-spotlight-meta');
+  });
+
   block.textContent = '';
   if (figure.children.length) block.append(figure);
   block.append(body);
