@@ -20,7 +20,7 @@ body.foodnetwork {
   --fn-cream: #f7f5f0;          /* soft editorial background band */
 
   /* map onto the global color system used across styles.css + blocks */
-  --background-color: #fff;
+  --background-color: #f9f9f9;
   --light-color: var(--fn-cream);
   --dark-color: #000;
   --text-color: var(--fn-charcoal);
@@ -38,6 +38,21 @@ body.foodnetwork {
 }
 
 /* ===== Global element theming (scoped to Food Network pages) ===== */
+
+/* Page canvas is a soft off-white; the nav and each content block sit on white
+   cards over it. */
+body.foodnetwork header,
+body.foodnetwork .nav-foodnetwork {
+  background-color: #fff;
+}
+
+/* Each section's centered content column becomes a white card on the grey
+   canvas. Padding gives the content breathing room inside the card. */
+body.foodnetwork main > .section > div {
+  background-color: #fff;
+  padding-top: 24px;
+  padding-bottom: 24px;
+}
 
 body.foodnetwork a:hover {
   text-decoration: underline;
