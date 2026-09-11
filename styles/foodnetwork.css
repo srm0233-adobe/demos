@@ -58,7 +58,8 @@ body.foodnetwork main > .section > div {
    white cards, so the section band itself stays on the grey canvas (its heading
    sits directly on grey and the grey shows around the cards). */
 body.foodnetwork main > .cards-tiles-container > div,
-body.foodnetwork main > .cards-spotlight-container > div {
+body.foodnetwork main > .cards-spotlight-container > div,
+body.foodnetwork main > .cards-news-container > div {
   background-color: transparent;
 }
 

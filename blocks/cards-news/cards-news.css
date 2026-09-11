@@ -1,4 +1,6 @@
-/* Cards News — vertical story list (image + eyebrow + headline + desc). Structural only. */
+/* Cards News — story rows: text left (eyebrow + headline + description),
+   image right. Each row is a white card on the grey canvas (matches the
+   foodnetwork.com "What's New" feed). */
 
 .cards-news .cards-news-list {
   list-style: none;
@@ -12,49 +14,91 @@
 .cards-news .cards-news-item {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 12px;
-  padding-bottom: 24px;
-  border-bottom: 1px solid;
-}
-
-.cards-news .cards-news-item:last-child {
-  border-bottom: 0;
-  padding-bottom: 0;
+  gap: 16px;
+  background-color: #fff;
+  overflow: hidden;
 }
 
 .cards-news .cards-news-image {
   line-height: 0;
+  order: -1; /* image above text on narrow screens */
 }
 
 .cards-news .cards-news-image picture,
 .cards-news .cards-news-image img {
   display: block;
   width: 100%;
-  height: auto;
+  height: 100%;
+  aspect-ratio: 16 / 9;
   object-fit: cover;
 }
 
 .cards-news .cards-news-body {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 12px;
+  padding: 24px;
 }
 
 .cards-news .cards-news-body > * {
   margin: 0;
 }
 
+/* eyebrow — small uppercase gray timestamp / category tag */
 .cards-news .cards-news-eyebrow {
   text-transform: uppercase;
-  letter-spacing: 0.04em;
-  font-size: var(--body-font-size-xs);
+  letter-spacing: 0.06em;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--fn-charcoal, #1a1a1a);
 }
 
-/* On wider screens the image sits left of the text. */
+/* headline — large bold charcoal sans */
+.cards-news .cards-news-body h3 {
+  font-family: var(--body-font-family, "Helvetica Neue", helvetica, arial, sans-serif);
+  font-size: 28px;
+  line-height: 1.15;
+  font-weight: 700;
+}
+
+.cards-news .cards-news-body h3 a:any-link {
+  color: var(--fn-charcoal, #1a1a1a);
+  font-family: var(--body-font-family, "Helvetica Neue", helvetica, arial, sans-serif);
+  font-size: 28px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.cards-news .cards-news-body h3 a:hover {
+  color: var(--fn-red, #c8102e);
+  text-decoration: none;
+}
+
+/* description */
+.cards-news .cards-news-body p:not(.cards-news-eyebrow) {
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--fn-charcoal, #1a1a1a);
+}
+
+/* On wider screens the text sits left of the image. The image is first in the
+   DOM but placed into the right column so text reads on the left. */
 @media (width >= 600px) {
   .cards-news .cards-news-item {
-    grid-template-columns: 320px 1fr;
-    align-items: start;
-    gap: 24px;
+    grid-template-columns: 1fr 1fr;
+    align-items: stretch;
+    gap: 0;
+  }
+
+  .cards-news .cards-news-image {
+    order: 0;
+    grid-column: 2;
+  }
+
+  .cards-news .cards-news-body {
+    grid-column: 1;
+    grid-row: 1;
+    justify-content: center;
+    padding: 32px 40px;
   }
 }
